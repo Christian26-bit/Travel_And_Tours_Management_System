@@ -33,37 +33,42 @@
                   <FontAwesomeIconView glyphName="PLUS" size="20" />
                </graphic>
             </Button>
-            <Button fx:id="customers_btn" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" text="Customers">
+            <Button fx:id="bookings_btn" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" text="Bookings">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CALENDAR" />
+               </graphic>
+            </Button>
+            <Button fx:id="clients_btn" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" text="Clients">
                <graphic>
                   <FontAwesomeIconView glyphName="USERS" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="60.0" mnemonicParsing="false" text="Tour Packages">
+            <Button fx:id="tour_package_btn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" text="Tour Packages">
                <graphic>
                   <FontAwesomeIconView glyphName="ARCHIVE" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" text="Trips">
+            <Button fx:id="trips_btn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" text="Trips">
                <graphic>
                   <FontAwesomeIconView glyphName="MAP_MARKER" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="110.0" mnemonicParsing="false" text="Hotel">
+            <Button fx:id="hotel_btn" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" text="Hotel">
                <graphic>
                   <FontAwesomeIconView glyphName="BUILDING" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" text="Transportation">
+            <Button fx:id="transportation_btn" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" text="Transportation">
                <graphic>
                   <FontAwesomeIconView glyphName="BUS" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="160.0" mnemonicParsing="false" text="Payments">
+            <Button fx:id="payment_btn" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" text="Payments">
                <graphic>
                   <FontAwesomeIconView glyphName="CREDIT_CARD" />
                </graphic>
             </Button>
-            <Button layoutX="10.0" layoutY="185.0" mnemonicParsing="false" text="Logout">
+            <Button fx:id="logout_btn" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" text="Logout">
                <graphic>
                   <FontAwesomeIconView glyphName="SIGN_OUT" />
                </graphic>

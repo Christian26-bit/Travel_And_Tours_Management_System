@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.DashboardController">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1670.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Dashboard Overview" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back! Here's what's happening with your travel agency today." wrappingWidth="397.5546875" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" text="Create New Booking">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PLUS" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox spacing="24.0">
+               <children>
+                  <VBox layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="USERS" size="2em" />
+                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                 <Label styleClass="stat-growth-text" text="+5%" />
+                              </VBox>
+                           </children>
+                           <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Customers" />
+                        <Label text="248" />
+                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Travelers" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="MAP_MARKER" size="2em" />
+                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="stat-growth-text" text="+5%" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                           </padding>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Customers" />
+                        <Label text="248" />
+                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Travelers" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="1580.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="MONEY" size="2em" />
+                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="stat-growth-text" text="+5%" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                           </padding>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Customers" />
+                        <Label text="248" />
+                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Travelers" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="1580.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="CALENDAR" size="2em" />
+                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="stat-growth-text" text="+5%" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                           </padding>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Customers" />
+                        <Label text="248" />
+                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Active Travelers" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="14.0" right="14.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Recent Trips" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Latest bookings and activities" wrappingWidth="397.5546875" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="View All">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="LIST_UL" />
+                     </graphic>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <ListView prefHeight="200.0" prefWidth="200.0">
+               <padding>
+                  <Insets left="14.0" right="14.0" />
+               </padding>
+            </ListView>
+         </children>
+         <padding>
+            <Insets left="14.0" right="14.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>

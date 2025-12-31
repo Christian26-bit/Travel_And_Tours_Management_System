@@ -11,19 +11,58 @@ import java.util.ResourceBundle;
 public class UserMenuController implements Initializable {
     public Button addBooking_btn;
     public Button dashboard_btn;
-    public Button customers_btn;
+    public Button clients_btn;
+    public Button bookings_btn;
+    public Button tour_package_btn;
+    public Button trips_btn;
+    public Button hotel_btn;
+    public Button transportation_btn;
+    public Button payment_btn;
+    public Button logout_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addBooking_btn.setOnAction(event -> {onAddBookingButtonClicked();});
         dashboard_btn.setOnAction(event -> {onDashboardButtonClicked();});
+        bookings_btn.setOnAction(event -> {onBookingsButtonClicked();});
+        clients_btn.setOnAction(event -> {onClientsButtonClicked();});
+        tour_package_btn.setOnAction(event -> {onTourPackageButtonClicked();});
+        trips_btn.setOnAction(event -> {onTripsButtonClicked();});
+        hotel_btn.setOnAction(event -> {onHotelButtonClicked();});
+        transportation_btn.setOnAction(event -> {onTransportationButtonClicked();});
+        payment_btn.setOnAction(event -> {onPaymentButtonClicked();});
+        logout_btn.setOnAction(event -> {onLogoutButtonClicked();});
     }
 
     private void onAddBookingButtonClicked() {
-        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.ADD_BOOKING);
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.NEW_BOOKING);
     }
 
     private void onDashboardButtonClicked() {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.DASHBOARD);
+    }
+    private void onBookingsButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.BOOKINGS);
+    }
+    private void onClientsButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.CLIENTS);
+    }
+    private  void onTourPackageButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.TOUR_PACKAGES);
+    }
+    private void onTripsButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.TRIPS);
+    }
+    private void onHotelButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.HOTELS);
+    }
+    private void onTransportationButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.TRANSPORTATION);
+    }
+    private void onPaymentButtonClicked() {
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.PAYMENTS);
+    }
+    private void onLogoutButtonClicked() {
+        Model.getInstance().logoutUser();
     }
 }

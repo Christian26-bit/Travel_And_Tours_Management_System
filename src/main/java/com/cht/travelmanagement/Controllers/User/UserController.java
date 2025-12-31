@@ -14,9 +14,14 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().addListener((observable, oldVal, newVal) -> {
             switch (newVal) {
-                case ADD_BOOKING -> {
-                    user_parent.setCenter(Model.getInstance().getUserViewFactory().getAddBookingView());
-                }
+                case NEW_BOOKING -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getNewBookingView());
+                case BOOKINGS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getBookingListView());
+                case CLIENTS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getClientListView());
+                case TOUR_PACKAGES ->  user_parent.setCenter(Model.getInstance().getUserViewFactory().getTourPackageListView());
+                case TRIPS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getTripsListView());
+                case HOTELS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getHotelsListView());
+                case TRANSPORTATION -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getTransportationListView());
+                case PAYMENTS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getPaymentsListView());
                 default -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getUserDashboardPane());
             }
         });

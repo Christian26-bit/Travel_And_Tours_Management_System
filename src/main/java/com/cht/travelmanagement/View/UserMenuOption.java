@@ -2,7 +2,8 @@ package com.cht.travelmanagement.View;
 
 public enum UserMenuOption {
     DASHBOARD,
-    ADD_BOOKING,
+    NEW_BOOKING,
+    BOOKINGS,
     CLIENTS,
     TOUR_PACKAGES,
     TRIPS,

@@ -78,4 +78,9 @@ public class Model {
             throw new RuntimeException(e);
         }
     }
+
+    public void logoutUser() {
+        this.userLoggedInSuccessfully = false;
+        viewFactory.showLoginWindow();
+    }
 }

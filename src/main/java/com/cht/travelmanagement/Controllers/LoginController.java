@@ -26,6 +26,9 @@ public class LoginController implements Initializable {
         acc_selector.setValue(Model.getInstance().getViewFactory().getLoggedInAccountType());
         acc_selector.valueProperty().addListener(observable -> Model.getInstance().getViewFactory().setLoggedInAccountType(acc_selector.getValue()));
         loginButton.setOnAction(event -> onLoginButtonClicked());
+
+        // Exit Application
+        cancelButton.setOnAction(event -> Model.getInstance().getViewFactory().closeStage((Stage) cancelButton.getScene().getWindow()));
     }
 
     private void onLoginButtonClicked() {
