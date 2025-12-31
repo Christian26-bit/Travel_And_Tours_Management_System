@@ -1,5 +1,6 @@
 package com.cht.travelmanagement.Models;
 
+import com.cht.travelmanagement.View.AccountType;
 import com.cht.travelmanagement.View.AdminViewFactory;
 import com.cht.travelmanagement.View.UserViewFactory;
 import com.cht.travelmanagement.View.ViewFactory;
@@ -57,8 +58,12 @@ public class Model {
     public boolean getUserLoggedInSuccessfully() {
         return this.userLoggedInSuccessfully;
     }
-    public void evaluateLoginCredentials(String email, String password) {
+    public void evaluateLoginCredentials(String email, String password, AccountType accountType) {
         String verifyLogin = "SELECT COUNT(1) FROM employee WHERE email = ? AND  password = ?";
+
+        if (accountType == AccountType.ADMIN) {
+            verifyLogin += " AND isManager = 1";
+        }
         try (Connection connection = DatabaseDriver.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(verifyLogin);
         ) {
@@ -79,8 +84,4 @@ public class Model {
         }
     }
 
-    public void logoutUser() {
-        this.userLoggedInSuccessfully = false;
-        viewFactory.showLoginWindow();
-    }
 }

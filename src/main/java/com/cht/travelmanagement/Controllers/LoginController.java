@@ -34,20 +34,24 @@ public class LoginController implements Initializable {
     private void onLoginButtonClicked() {
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
-
+        AccountType selectedAccountType = acc_selector.getValue();
         Stage stage = (Stage) loginMessageLabel.getScene().getWindow();
-        if (Model.getInstance().getViewFactory().getLoggedInAccountType() == AccountType.USER) {
-            Model.getInstance().evaluateLoginCredentials(username, password);
-            if (Model.getInstance().getUserLoggedInSuccessfully()) {
+
+        Model.getInstance().evaluateLoginCredentials(username, password, selectedAccountType);
+
+        if (Model.getInstance().getUserLoggedInSuccessfully()) {
+            if (selectedAccountType == AccountType.USER) {
                 Model.getInstance().getUserViewFactory().showUserDashboardWindow();
-                Model.getInstance().getViewFactory().closeStage(stage);
             } else {
-                loginMessageLabel.setText("Invalid Credentials. Please try again.");
-                usernameTextField.clear();
-                passwordPasswordField.clear();
+                Model.getInstance().getAdminViewFactory().showAdminWindow();
+
             }
+            Model.getInstance().getViewFactory().closeStage(stage);
+
         } else {
-            Model.getInstance().getAdminViewFactory().showAdminWindow();
+            loginMessageLabel.setText("Invalid Credentials or Access Denied.");
+            usernameTextField.clear();
+            passwordPasswordField.clear();
         }
     }
 }

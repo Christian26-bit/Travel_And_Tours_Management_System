@@ -4,6 +4,7 @@ import com.cht.travelmanagement.Models.Model;
 import com.cht.travelmanagement.View.UserMenuOption;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,6 +64,9 @@ public class UserMenuController implements Initializable {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.PAYMENTS);
     }
     private void onLogoutButtonClicked() {
-        Model.getInstance().logoutUser();
+        Stage stage = (Stage) logout_btn.getScene().getWindow();
+        Model.getInstance().getViewFactory().closeStage(stage);
+        Model.getInstance().getViewFactory().showLoginWindow();
+        Model.getInstance().setUserLoggedInSuccessfully(false);
     }
 }
