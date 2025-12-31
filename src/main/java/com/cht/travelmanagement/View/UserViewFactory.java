@@ -5,11 +5,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
 public class UserViewFactory extends ViewFactory{
 
-    private AnchorPane userDashboardView;
+    private ScrollPane userDashboardView;
     private  AnchorPane addBookingView;
     private final ObjectProperty<UserMenuOption> userSelectedMenuItem;
     public UserViewFactory() {
@@ -20,7 +21,7 @@ public class UserViewFactory extends ViewFactory{
         return userSelectedMenuItem;
     }
 
-    public AnchorPane getUserDashboardPane() {
+    public ScrollPane getUserDashboardPane() {
         if (userDashboardView == null) {
             try {
                 userDashboardView = FXMLLoader.load(getClass().getResource("/Views/User/Dashboard-view.fxml"));

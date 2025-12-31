@@ -35,6 +35,7 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.setTitle("CHT Travel & Tour Management System");
         stage.show();
     }
