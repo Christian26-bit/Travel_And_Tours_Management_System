@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.cht.travelmanagement.Controllers.User.CustomersController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Text layoutX="271.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers"/>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.CustomersController">
+    <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers" />
+   <HBox alignment="CENTER" layoutX="14.0" layoutY="41.0" prefHeight="25.0" prefWidth="246.0">
+      <children>
+         <FontAwesomeIconView glyphName="SEARCH" HBox.hgrow="ALWAYS" />
+         <TextField fx:id="customerSearch_fld" HBox.hgrow="ALWAYS" />
+      </children>
+   </HBox>
+   <ListView fx:id="customerListView" layoutX="14.0" layoutY="73.0" prefHeight="200.0" prefWidth="578.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
 </AnchorPane>

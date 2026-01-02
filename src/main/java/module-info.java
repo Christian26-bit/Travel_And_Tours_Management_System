@@ -4,9 +4,13 @@ module com.cht.travelmanagement {
     requires java.sql;
     requires mysql.connector.j;
 	requires javafx.base;
-
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens com.cht.travelmanagement to javafx.fxml;
+    opens com.cht.travelmanagement.Controllers.User to javafx.fxml;
+    opens com.cht.travelmanagement.Controllers.Admin to javafx.fxml;
+    opens com.cht.travelmanagement.Controllers.User.BookingWizard to javafx.fxml;
+
     exports com.cht.travelmanagement;
     exports com.cht.travelmanagement.Controllers;
     exports  com.cht.travelmanagement.Controllers.Admin;

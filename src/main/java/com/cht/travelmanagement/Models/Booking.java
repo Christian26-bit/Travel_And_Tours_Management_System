@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -14,22 +15,47 @@ public class Booking {
 	private final IntegerProperty bookingId;
 	private final IntegerProperty employeeId;
 	private final IntegerProperty clientId;
+	private final StringProperty packageName;
+	private final StringProperty clientName;
 	private final IntegerProperty packageId;
+	private final StringProperty destination;
 	private final ObjectProperty<LocalDate> bookingDate;
 	private final StringProperty status;
 	private final IntegerProperty paxCount; ;
 	
-	public Booking(int bookingId, int employeeId,int clientId, int packageId, LocalDate bookingDate, String status, int paxCount) {
+	public Booking(int bookingId, int employeeId, int clientId, String clientName, int packageId, String packageName, StringProperty destination, LocalDate bookingDate, String status, int paxCount) {
 		this.bookingId = new SimpleIntegerProperty(this, "bookingId", bookingId);
 		this.employeeId = new SimpleIntegerProperty(this, "employeeId", employeeId);
 		this.clientId = new SimpleIntegerProperty(this, "clientId", clientId);
+		this.clientName = new SimpleStringProperty(this, "clientName", clientName);
+		this.packageName = new SimpleStringProperty(this, "packageName", packageName);
 		this.packageId = new SimpleIntegerProperty(this, "packageId", packageId);
-		this.bookingDate = new SimpleObjectProperty<>(this, "bookingDate", bookingDate);
+        this.destination = destination;
+        this.bookingDate = new SimpleObjectProperty<>(this, "bookingDate", bookingDate);
 		this.status = new SimpleStringProperty(this, "isConfirmed", status);
 		this.paxCount = new SimpleIntegerProperty(this, "paxCount", paxCount);
 	}
-	
-	public int getBookingId() { return bookingId.get(); }
+
+
+
+	public Booking(int bookingId, String clientName, String destination, String packageName, LocalDate startDate,
+            String status) {
+		this.bookingId = new SimpleIntegerProperty(this, "bookingId", bookingId);
+		this.employeeId = new SimpleIntegerProperty(this, "employeeId", 0);
+		this.clientId = new SimpleIntegerProperty(this, "clientId", 0);
+		this.packageId = new SimpleIntegerProperty(this, "packageId", 0);
+		this.destination = new SimpleStringProperty(this, "destination", destination);
+		this.clientName = new SimpleStringProperty(this, "clientName", clientName);
+		this.packageName = new SimpleStringProperty(this, "packageName", packageName);
+		this.bookingDate = new SimpleObjectProperty<>(this, "bookingDate", startDate);
+		this.status = new SimpleStringProperty(this, "isConfirmed", status);
+		this.paxCount = new SimpleIntegerProperty(this, "paxCount", 0);
+
+    }
+
+
+
+    public int getBookingId() { return bookingId.get(); }
 	public IntegerProperty bookingIdProperty() { return bookingId;}
 	
 	public int getEmployeeId() { return employeeId.get(); }
@@ -37,9 +63,18 @@ public class Booking {
 	
 	public int getClientId() { return clientId.get(); }
 	public IntegerProperty clientIdProperty() { return clientId; }
+
+	public String getDestination() { return destination.get(); }
+	public StringProperty destinationProperty() { return destination; }
+
+	public String getClientName() { return clientName.get(); }
+	public StringProperty clientNameProperty() { return clientName; }
 	
 	public int getPackageId() { return packageId.get(); }
 	public IntegerProperty packageIdProperty() { return packageId; }
+
+	public String getPackageName() { return packageName.get(); }
+	public StringProperty packageNameProperty() { return packageName; }
 	
 	public LocalDate getBookingDate() { return bookingDate.get(); }
 	public ObjectProperty<LocalDate> bookingDateProperty() { return bookingDate; }

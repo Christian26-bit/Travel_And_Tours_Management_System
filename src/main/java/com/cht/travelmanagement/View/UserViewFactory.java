@@ -42,6 +42,8 @@ public class UserViewFactory extends ViewFactory{
         return userDashboardView;
     }
 
+
+
     public void showUserDashboardWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/User/User-view.fxml"));
         UserController userController = new UserController();
@@ -119,6 +121,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return transportationListView;
     }
+    
     public AnchorPane getPaymentsListView() {
         if (paymentsListView == null) {
             try {

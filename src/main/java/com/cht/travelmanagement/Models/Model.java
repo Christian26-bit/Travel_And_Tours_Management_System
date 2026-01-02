@@ -1,5 +1,9 @@
 package com.cht.travelmanagement.Models;
 
+import com.cht.travelmanagement.Models.Repository.BookingRepository;
+import com.cht.travelmanagement.Models.Repository.ClientRepository;
+import com.cht.travelmanagement.Models.Repository.Implementation.BookingRepositoryImpl;
+import com.cht.travelmanagement.Models.Repository.Implementation.ClientRepositoryImpl;
 import com.cht.travelmanagement.View.AccountType;
 import com.cht.travelmanagement.View.AdminViewFactory;
 import com.cht.travelmanagement.View.UserViewFactory;
@@ -22,8 +26,8 @@ public class Model {
 	private final AdminViewFactory adminViewFactory;
 	private final UserViewFactory userViewFactory;
 
-	public final ObservableList<Client> clients;
 	public final ObservableList<TourPackage> tourPackages;
+	public final ObservableList<Booking> bookings;
 
 	private boolean userLoggedInSuccessfully;
 
@@ -34,8 +38,8 @@ public class Model {
 		this.userViewFactory = new UserViewFactory();
 		this.userLoggedInSuccessfully = false;
 
-		this.clients = FXCollections.observableArrayList();
 		this.tourPackages = FXCollections.observableArrayList();
+		this.bookings = FXCollections.observableArrayList();
 
 	}
 
@@ -69,6 +73,12 @@ public class Model {
 		return this.userLoggedInSuccessfully;
 	}
 
+	/**
+	 * Evaluate login credentials
+	 * @param email
+	 * @param password
+	 * @param accountType
+	 */
 	public void evaluateLoginCredentials(String email, String password, AccountType accountType) {
 		String verifyLogin = "SELECT COUNT(1) FROM employee WHERE email = ? AND  password = ?";
 
@@ -94,40 +104,35 @@ public class Model {
 		}
 	}
 
+
+	/**
+	 * Get Clients from Database
+     */
 	public ObservableList<Client> getClients() {
-		String query = "SELECT * FROM client";
-		clients.clear();
-		try (Connection connection = DatabaseDriver.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(query);
-				ResultSet resultSet = preparedStatement.executeQuery()) {
-			while (resultSet.next()) {
-				int clientId = resultSet.getInt("clientId");
-				String name = resultSet.getString("name");
-				String email = resultSet.getString("email");
-				String address = resultSet.getString("address");
-				String contactNumber = resultSet.getString("contactNumber");
-				String customerType = resultSet.getString("customerType");
-				Date sqlDateRegistered = resultSet.getDate("dateRegistered");
-				LocalDate dateRegistered = sqlDateRegistered.toLocalDate();
+		ClientRepository clientRepository = new ClientRepositoryImpl();
+		return clientRepository.getClients();
+	}
 
-				Client client = new Client(clientId, name, email, address, contactNumber, customerType, dateRegistered);
-
-				clients.add(client);
-			}
-
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		return clients;
+	/** 
+	 *  Get Dashboard Data from Database
+	 */
+	public int[] getDashboardData() {
+		BookingRepository bookingRepository = new BookingRepositoryImpl();
+		int clientCount = getClients().size();
+		return bookingRepository.getDashboardData(clientCount);
 	}
 	
 
+	/**
+	 * Get Tour Packages from Database
+     */
 	public ObservableList<TourPackage> getTourPackages() {
 		String query = "SELECT * FROM package";
 		tourPackages.clear();
 		try (Connection connection = DatabaseDriver.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet resultSet = preparedStatement.executeQuery()) {
+			
 			while (resultSet.next()) {
 				int packageId = resultSet.getInt("PackageId");
 				String packageName = resultSet.getString("Name");
@@ -153,4 +158,14 @@ public class Model {
 		return tourPackages;
 	}
 
+	public ObservableList<Booking> getRecentBookings() {
+		BookingRepository bookingRepository = new BookingRepositoryImpl();
+		return bookingRepository.getRecentBookings();
+	}
+
+
+	public ObservableList<Booking> getAllBookings() {
+		BookingRepository bookingRepository = new BookingRepositoryImpl();
+		return bookingRepository.getAllBookings();
+	}
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Circle?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<HBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      alignment="CENTER_LEFT"
+      fx:controller="com.cht.travelmanagement.Controllers.User.BookingItemController"
+      spacing="20"
+      style="-fx-background-color: white; -fx-padding: 10;">
+
+    <Label fx:id="lblId"
+           text="TRP-001"
+           style="-fx-text-fill: #2196F3; -fx-font-weight: bold;" />
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <StackPane>
+            <Circle radius="18" fill="#8e44ad" />
+            <Label fx:id="lblInitials"
+                   text="JS"
+                   style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        </StackPane>
+        <Label fx:id="lblName" text="John Smith" />
+    </HBox>
+  
+    <HBox alignment="CENTER_LEFT" spacing="5">
+        <FontAwesomeIconView glyphName="MAP_MARKER" fill="#7f8c8d" />
+        <Label fx:id="lblLocation" text="Boracay" />
+    </HBox>
+
+    <Label fx:id="lblPackage" text="Beach Paradise" prefWidth="150" />
+
+    <HBox alignment="CENTER_LEFT" spacing="5">
+        <FontAwesomeIconView glyphName="CALENDAR" fill="#7f8c8d" />
+        <Label fx:id="lblDate" text="Nov 5, 2025" />
+    </HBox>
+
+    <Label fx:id="lblStatus"
+           text="Ongoing"
+           style="-fx-background-color: #007bff;
+                  -fx-text-fill: white;
+                  -fx-background-radius: 15;
+                  -fx-padding: 5 15 5 15;" />
+
+</HBox>
