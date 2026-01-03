@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="915.0" prefWidth="1697.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="915.0" prefWidth="1697.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep2Contoller">
    <content>
       <AnchorPane prefHeight="913.0" prefWidth="4635.0">
          <children>

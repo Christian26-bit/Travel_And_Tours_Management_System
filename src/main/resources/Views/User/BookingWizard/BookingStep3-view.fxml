@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.Bookingwizard.BookingStep3Controller">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
-
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
+  <content>
+    <Text layoutX="271.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trips" wrappingWidth="196.51171875" />
+  </content>
+</ScrollPane>

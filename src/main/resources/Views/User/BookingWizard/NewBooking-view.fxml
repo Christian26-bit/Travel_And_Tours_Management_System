@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:controller="com.cht.travelmanagement.Controllers.User.NewBookingController" fx:id="newBooking_parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        
+        <fx:include source="ProgressIndicator.fxml" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <fx:include source="BookingStep1-view.fxml" BorderPane.alignment="CENTER"/>
+    </center>
+    <right>
+        <fx:include source="BookingSummary.fxml" BorderPane.alignment="CENTER" />
+    </right>
+    <bottom>
+        <fx:include source="NavigationButtons.fxml" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.ProgressIndicatorController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<!-- Progress Indicator Section -->
 		<VBox prefHeight="120" spacing="16" style="-fx-padding: 32 32 16 32;">

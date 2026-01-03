@@ -2,7 +2,12 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.Bookingwizard.BookingStep5Controller">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.Text?>
+<ScrollPane fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep5Controller" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12">
+	<content>
+		<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+		<Text layoutX="271.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trips"/>
+	</content>
+</ScrollPane>
 

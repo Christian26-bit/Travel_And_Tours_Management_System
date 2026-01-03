@@ -1,13 +1,25 @@
 package com.cht.travelmanagement.View;
 
+import com.cht.travelmanagement.Controllers.User.BookingWizard.BookingNavigationController;
 import com.cht.travelmanagement.Controllers.User.UserController;
+import com.cht.travelmanagement.Models.Model;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Objects;
+
 
 public class UserViewFactory extends ViewFactory{
 
@@ -22,19 +34,41 @@ public class UserViewFactory extends ViewFactory{
     private AnchorPane transportationListView;
     private AnchorPane paymentsListView;
 
+    private final FXMLPaths fxmlPaths;
+    private UserController userController;
     private final ObjectProperty<UserMenuOption> userSelectedMenuItem;
+    private final IntegerProperty bookingStep = new SimpleIntegerProperty(1);
+
+
+    // Booking
+    private final ObjectProperty<BookingButtons>  bookingSelectedButton;
+    private ScrollPane bookingStep1View;
+    private ScrollPane bookingStep2View;
+    private ScrollPane bookingStep3View;
+    private AnchorPane bookingStep4View;
+    private ScrollPane bookingStep5View;
+    private ScrollPane bookingStep6View;
+
+
+
     public UserViewFactory() {
         this.userSelectedMenuItem = new SimpleObjectProperty<>();
+        this.bookingSelectedButton = new SimpleObjectProperty<>();
+
+        this.fxmlPaths = new FXMLPaths();
     }
 
     public ObjectProperty<UserMenuOption> getUserSelectedMenuItem() {
         return userSelectedMenuItem;
     }
+    public IntegerProperty getBookingStep() {
+        return bookingStep;
+    }
 
     public ScrollPane getUserDashboardPane() {
         if (userDashboardView == null) {
             try {
-                userDashboardView = FXMLLoader.load(getClass().getResource("/Views/User/Dashboard-view.fxml"));
+                userDashboardView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Dashboard-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -54,17 +88,18 @@ public class UserViewFactory extends ViewFactory{
     public BorderPane getNewBookingView() {
         if (newBookingView == null) {
             try {
-                newBookingView = FXMLLoader.load(getClass().getResource("/Views/User/NewBooking-view.fxml"));
+                newBookingView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/BookingWizard/NewBooking-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return newBookingView;
     }
+
     public AnchorPane getBookingListView() {
         if (bookingListView == null) {
             try {
-                bookingListView = FXMLLoader.load(getClass().getResource("/Views/User/Bookings-view.fxml"));
+                bookingListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Bookings-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -74,7 +109,7 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getClientListView() {
         if (customerListView == null) {
             try {
-                customerListView = FXMLLoader.load(getClass().getResource("/Views/User/Clients-view.fxml"));
+                customerListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Clients-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -84,7 +119,7 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getTourPackageListView() {
         if (tourPackageListView == null) {
             try {
-                tourPackageListView = FXMLLoader.load(getClass().getResource("/Views/User/TourPackages-view.fxml"));
+                tourPackageListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/TourPackages-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -94,7 +129,7 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getTripsListView() {
         if (tripsListView == null) {
             try {
-                tripsListView = FXMLLoader.load(getClass().getResource("/Views/User/Trips-view.fxml"));
+                tripsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Trips-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -104,17 +139,18 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getHotelsListView() {
         if (hotelsListView == null) {
             try {
-                hotelsListView = FXMLLoader.load(getClass().getResource("/Views/User/Hotels-view.fxml"));
+                hotelsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Hotels-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return hotelsListView;
     }
+
     public AnchorPane getTransportationListView() {
         if (transportationListView == null) {
             try {
-                transportationListView = FXMLLoader.load(getClass().getResource("/Views/User/Transportation-view.fxml"));
+                transportationListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Transportation-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,12 +161,86 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getPaymentsListView() {
         if (paymentsListView == null) {
             try {
-                paymentsListView = FXMLLoader.load(getClass().getResource("/Views/User/Payments-view.fxml"));
+                paymentsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Payments-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return paymentsListView;
     }
+
+    /*
+     * Booking Process
+     */
+
+
+    public ObjectProperty<BookingButtons> getBookingSelectedButton() {
+        return bookingSelectedButton;
+    }
+
+    public ScrollPane getBookingStep2View() {
+        if (bookingStep2View == null) {
+            try {
+                bookingStep2View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.PACKAGE_SELECTION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep2View;
+    }
+
+    public ScrollPane getBookingStep3View() {
+        if (bookingStep3View == null) {
+            try {
+                bookingStep3View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CUSTOMIZATION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep3View;
+    }
+    public AnchorPane getBookingStep4View() {
+        if (bookingStep4View == null) {
+            try {
+                bookingStep4View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.HOTEL_SELECTION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep4View;
+    }
+
+    public ScrollPane getBookingStep5View() {
+        if (bookingStep5View == null) {
+            try {
+                bookingStep5View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.VEHICLE_SELECTION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep5View;
+    }
+    public ScrollPane getBookingStep6View() {
+        if (bookingStep6View == null) {
+            try {
+                bookingStep6View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CONFIRMATION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep6View;
+    }
+
+    public ScrollPane getBookingStep1View() {
+        if (bookingStep1View == null) {
+            try {
+                bookingStep1View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CUSTOMER_INFORMATION)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bookingStep1View;
+    }
+
 
 }
