@@ -16,4 +16,8 @@ public class AdminViewFactory extends ViewFactory{
         loader.setController(adminController);
         createStage(loader);
     }
+
+    public String setLoggedInEmployeeEmail(String email) {
+        return email;
+    }
 }

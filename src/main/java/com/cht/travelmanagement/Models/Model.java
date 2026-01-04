@@ -3,12 +3,12 @@ package com.cht.travelmanagement.Models;
 import com.cht.travelmanagement.Controllers.User.BookingWizard.BookingNavigationController;
 import com.cht.travelmanagement.Models.Repository.BookingRepository;
 import com.cht.travelmanagement.Models.Repository.ClientRepository;
+import com.cht.travelmanagement.Models.Repository.EmployeeRepository;
 import com.cht.travelmanagement.Models.Repository.Implementation.BookingRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.ClientRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.EmployeeRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.TourPackageRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.TourPackageRepository;
-import com.cht.travelmanagement.View.AccountType;
 import com.cht.travelmanagement.View.AdminViewFactory;
 import com.cht.travelmanagement.View.UserViewFactory;
 import com.cht.travelmanagement.View.ViewFactory;
@@ -16,100 +16,134 @@ import com.cht.travelmanagement.View.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 public class Model {
-	private static Model model;
-	private final ViewFactory viewFactory;
-	private final DatabaseDriver databaseDriver;
-	private final AdminViewFactory adminViewFactory;
-	private final UserViewFactory userViewFactory;
 
-	public final ObservableList<TourPackage> tourPackages;
-	public final ObservableList<Booking> bookings;
-	public final BookingNavigationController  bookingNavigationController;
+    private static Model model;
+    private final ViewFactory viewFactory;
+    private final DatabaseDriver databaseDriver;
+    private final AdminViewFactory adminViewFactory;
+    private final UserViewFactory userViewFactory;
 
-	private boolean userLoggedInSuccessfully;
+    public final ObservableList<TourPackage> tourPackages;
+    public final ObservableList<Booking> bookings;
+    public final BookingNavigationController bookingNavigationController;
 
-	private Model() {
-		this.viewFactory = new ViewFactory();
-		this.databaseDriver = new DatabaseDriver();
-		this.adminViewFactory = new AdminViewFactory();
-		this.userViewFactory = new UserViewFactory();
-		this.userLoggedInSuccessfully = false;
+    private boolean userLoggedInSuccessfully;
+    private Employee authenticatedUser;
+    private String authenticatedUserEmail;
 
-		this.tourPackages = FXCollections.observableArrayList();
-		this.bookings = FXCollections.observableArrayList();
+    private Model() {
+        this.viewFactory = new ViewFactory();
+        this.databaseDriver = new DatabaseDriver();
+        this.adminViewFactory = new AdminViewFactory();
+        this.userViewFactory = new UserViewFactory();
+        this.userLoggedInSuccessfully = false;
 
-		this.bookingNavigationController = new BookingNavigationController();
+        this.tourPackages = FXCollections.observableArrayList();
+        this.bookings = FXCollections.observableArrayList();
 
-	}
+        this.bookingNavigationController = new BookingNavigationController();
 
-	public static synchronized Model getInstance() {
-		if (model == null) {
-			model = new Model();
-		}
-		return model;
-	}
+    }
 
-	public ViewFactory getViewFactory() {
-		return viewFactory;
-	}
+    public static synchronized Model getInstance() {
+        if (model == null) {
+            model = new Model();
+        }
+        return model;
+    }
 
-	public AdminViewFactory getAdminViewFactory() {
-		return adminViewFactory;
-	}
+    public ViewFactory getViewFactory() {
+        return viewFactory;
+    }
 
-	public UserViewFactory getUserViewFactory() {
-		return userViewFactory;
-	}
+    public AdminViewFactory getAdminViewFactory() {
+        return adminViewFactory;
+    }
 
-	/**
-	 * User Methods Section
-	 */
-	public void setUserLoggedInSuccessfully(boolean status) {
-		this.userLoggedInSuccessfully = status;
-	}
+    public UserViewFactory getUserViewFactory() {
+        return userViewFactory;
+    }
 
-	public boolean getUserLoggedInSuccessfully() {
-		return this.userLoggedInSuccessfully;
-	}
-
-
-	/**
-	 * Get Clients from Database
+    /**
+     * User Methods Section
      */
-	public ObservableList<Client> getClients() {
-		ClientRepository clientRepository = new ClientRepositoryImpl();
-		return clientRepository.getClients();
-	}
+    public void setUserLoggedInSuccessfully(boolean status) {
+        this.userLoggedInSuccessfully = status;
+    }
 
-	/** 
-	 *  Get Dashboard Data from Database
-	 */
-	public int[] getDashboardData() {
-		BookingRepository bookingRepository = new BookingRepositoryImpl();
-		int clientCount = getClients().size();
-		return bookingRepository.getDashboardData(clientCount);
-	}
-	
+    public boolean getUserLoggedInSuccessfully() {
+        return this.userLoggedInSuccessfully;
+    }
 
-	/**
-	 * Get Tour Packages from Database
+    /**
+     * Set Authenticated User
      */
-	public ObservableList<TourPackage> getTourPackages() {
-		TourPackageRepository bookingRepository = new TourPackageRepositoryImpl();
-		return bookingRepository.getTourPackages();
-	}
+    public void setAuthenticatedUser(Employee employee) {
+        this.authenticatedUser = employee;
+    }
 
-	public ObservableList<Booking> getRecentBookings() {
-		BookingRepository bookingRepository = new BookingRepositoryImpl();
-		return bookingRepository.getRecentBookings();
-	}
+    /**
+     * Get Authenticated User
+     */
+    public Employee getAuthenticatedUser() {
+        return this.authenticatedUser;
+    }
 
+    /**
+     * Set Authenticated User Email (during login)
+     */
+    public void setAuthenticatedUserEmail(String email) {
+        this.authenticatedUserEmail = email;
+    }
 
+    /**
+     * Get Authenticated User Email
+     */
+    public String getAuthenticatedUserEmail() {
+        return this.authenticatedUserEmail;
+    }
 
-	public ObservableList<Booking> getAllBookings() {
-		BookingRepository bookingRepository = new BookingRepositoryImpl();
-		return bookingRepository.getAllBookings();
-	}
+    /**
+     * Get Clients from Database
+     */
+    public ObservableList<Client> getClients() {
+        ClientRepository clientRepository = new ClientRepositoryImpl();
+        return clientRepository.getClients();
+    }
+
+    /**
+     * Get Dashboard Data from Database
+     */
+    public int[] getDashboardData() {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        int clientCount = getClients().size();
+        return bookingRepository.getDashboardData(clientCount);
+    }
+
+    /**
+     * Get Tour Packages from Database
+     */
+    public ObservableList<TourPackage> getTourPackages() {
+        TourPackageRepository bookingRepository = new TourPackageRepositoryImpl();
+        return bookingRepository.getTourPackages();
+    }
+
+    public ObservableList<Booking> getRecentBookings() {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.getRecentBookings();
+    }
+
+    public ObservableList<Booking> getAllBookings() {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.getAllBookings();
+    }
+
+    /**
+     * Load Authenticated User from Database
+     */
+    public void loadAuthenticatedUser() {
+        EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();
+        employeeRepository.getAuthenticatedUser();
+    }
 }

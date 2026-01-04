@@ -1,0 +1,115 @@
+/* MINIMAL TABLE STYLE DESIGN */
+
+/* Booking Row Container */
+.booking-item-container {
+    -fx-background-color: white;
+    -fx-padding: 12 16 12 16;
+    -fx-spacing: 16;
+    -fx-border-color: #F0F0F0;
+    -fx-border-width: 0 0 1 0;
+    -fx-effect: null;
+}
+
+.booking-item-container:hover {
+    -fx-background-color: #FAFBFC;
+}
+
+/* Booking ID */
+.booking-id {
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-min-width: 100;
+}
+
+/* Client Avatar and Name */
+.client-avatar-circle {
+    -fx-fill: #3498db;
+}
+
+.client-avatar {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-alignment: CENTER;
+}
+
+.client-name {
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 12px;
+}
+
+/* Location */
+.booking-location {
+    -fx-text-fill: #7F8C8D;
+    -fx-font-size: 12px;
+}
+
+.booking-icon {
+    -fx-fill: #95A5A6;
+    -fx-font-size: 12;
+}
+
+/* Package */
+.booking-package {
+    -fx-text-fill: #7F8C8D;
+    -fx-font-size: 12px;
+}
+
+/* Date */
+.booking-date {
+    -fx-text-fill: #7F8C8D;
+    -fx-font-size: 12px;
+}
+
+/* Status Badge */
+.status-badge {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 10px;
+    -fx-alignment: CENTER;
+    -fx-min-width: 80;
+}
+
+.status-ongoing {
+    -fx-background-color: #3498db;
+}
+
+.status-completed {
+    -fx-background-color: #05CD99;
+}
+
+.status-pending {
+    -fx-background-color: #F39C12;
+}
+
+.status-cancelled {
+    -fx-background-color: #E74C3C;
+}
+
+/* Table Header */
+.booking-table-header {
+    -fx-background-color: #F8F9FB;
+    -fx-padding: 12 16 12 16;
+    -fx-spacing: 16;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1 0 1 0;
+}
+
+.booking-table-header-label {
+    -fx-text-fill: #7F8C8D;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-text-transform: uppercase;
+}
+
+/* Table Wrapper */
+.booking-table-wrapper {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1;
+    -fx-effect: null;
+}
+

@@ -1,6 +1,11 @@
 package com.cht.travelmanagement.Models;
 
-import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Employee {
     private IntegerProperty employeeId;
@@ -20,6 +25,7 @@ public class Employee {
         this.isManager = new SimpleBooleanProperty(this, "isManager", isManager);
         this.isActive = new SimpleBooleanProperty(this, "isActive", isActive);
     }
+    
 
     public  int getEmployeeId() { return employeeId.get(); }
     public IntegerProperty employeeIdProperty() { return employeeId; }

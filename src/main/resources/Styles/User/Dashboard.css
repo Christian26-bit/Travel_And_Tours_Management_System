@@ -1,84 +1,125 @@
-/* GLOBAL BACKGROUND */
+/* GLOBAL BACKGROUND - Consistent with User Menu */
 .scroll-pane {
     -fx-background-color: transparent;
 }
 .scroll-pane > .viewport {
-    -fx-background-color: #F4F7FE; /* Very Light Grey/Blue Background */
+    -fx-background-color: #F8F9FB; /* Light neutral background */
 }
 .dashboard-container {
-    -fx-background-color: #F4F7FE;
+    -fx-background-color: #F8F9FB;
     -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+/* WELCOME SECTION */
+.welcome-container {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 0);
+    -fx-padding: 25;
+}
+
+.welcome-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50; /* Matches UserMenu sidebar-title */
+}
+
+.welcome-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7F8C8D; /* Matches UserMenu menu-button color */
 }
 
 /* TEXT HIERARCHY */
 .header-title {
-    -fx-font-family: "Arial"; /* Or your preferred font */
-    -fx-font-size: 26px;
+    -fx-font-family: "Arial";
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674; /* Dark Navy Blue */
+    -fx-text-fill: #2C3E50; /* Dark color from UserMenu */
 }
 
 .header-subtitle {
     -fx-font-family: "Arial";
-    -fx-font-size: 14px;
-    -fx-text-fill: #A3AED0; /* Soft Grey */
+    -fx-font-size: 13px;
+    -fx-text-fill: #7F8C8D; /* Slate grey from UserMenu */
 }
 
 .section-title {
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
-/* STATISTICS CARDS */
+/* STATISTICS CARDS - Enhanced Modern Style */
 .stat-card {
     -fx-background-color: white;
-    -fx-background-radius: 20; /* Rounded Corners */
-    -fx-effect: dropshadow(three-pass-box, rgba(112, 144, 176, 0.15), 20, 0, 0, 0); /* Soft Shadow */
-    -fx-padding: 15;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 0);
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 15, 0, 0, 0);
 }
 
 .stat-icon {
-    -fx-fill: #3498db; /* Bright Blue Icon */
-    -fx-font-size: 30px;
+    -fx-fill: #3498db; /* Bright Blue from UserMenu */
 }
 
 .stat-icon-container {
-    -fx-background-color: #F4F7FE; /* Light Circle behind icon */
-    -fx-background-radius: 50%;
-    -fx-min-width: 50px;
-    -fx-min-height: 50px;
+    -fx-background-color: #EBF5FB; /* Very light blue from UserMenu hover state */
+    -fx-background-radius: 12;
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-max-width: 60px;
+    -fx-max-height: 60px;
     -fx-alignment: CENTER;
 }
 
 .stat-title {
-    -fx-font-size: 14px;
-    -fx-text-fill: #A3AED0;
+    -fx-font-size: 12px;
+    -fx-text-fill: #95A5A6; /* Lighter grey */
 }
 
 .stat-value {
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .stat-subtext {
-    -fx-font-size: 12px;
-    -fx-text-fill: #05CD99; /* Green for "Active" */
+    -fx-font-size: 11px;
+    -fx-text-fill: #05CD99; /* Green for status */
 }
 
-/* BUTTONS */
+.stat-growth-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #05CD99;
+    -fx-font-weight: bold;
+}
+
+/* BUTTONS - Consistent with UserMenu */
 .primary-button {
     -fx-background-color: #3498db;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-radius: 30; /* Pill shape */
+    -fx-background-radius: 8;
     -fx-cursor: hand;
-    -fx-padding: 10 20;
+    -fx-padding: 10 25;
+    -fx-font-size: 13px;
 }
+
 .primary-button:hover {
-    -fx-background-color: #2A0EBF;
+    -fx-background-color: #2A88C6;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.3), 10, 0, 0, 0);
 }
+
+.primary-button:pressed {
+    -fx-background-color: #1F6FA6;
+}
+
+.primary-button .font-awesome-icon-view,
 .primary-button .glyph-icon {
     -fx-fill: white;
 }
@@ -88,26 +129,48 @@
     -fx-text-fill: #3498db;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-font-size: 13px;
 }
+
 .secondary-button:hover {
+    -fx-text-fill: #2A88C6;
     -fx-underline: true;
 }
+
+.secondary-button .font-awesome-icon-view,
 .secondary-button .glyph-icon {
     -fx-fill: #3498db;
 }
 
-/* LIST VIEW */
+/* LIST VIEW - Modern Card Style */
 .list-view {
     -fx-background-color: transparent;
     -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-spacing: 8;
 }
+
 .list-cell {
     -fx-background-color: white;
-    -fx-padding: 10;
-    -fx-border-color: #F4F7FE;
-    -fx-border-width: 0 0 2 0; /* Separator line */
+    -fx-padding: 12;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 5, 0, 0, 0);
+    -fx-background-radius: 10;
+    -fx-text-fill: #2C3E50;
 }
+
+.list-cell:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 0);
+}
+
 .list-cell:empty {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-effect: null;
+}
+
+.list-cell:selected {
+    -fx-background-color: #EBF5FB;
+    -fx-border-color: #3498db;
+    -fx-border-width: 0 0 0 4;
 }

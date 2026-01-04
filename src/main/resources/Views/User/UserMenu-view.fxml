@@ -2,91 +2,85 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0" prefWidth="250.0" styleClass="sidebar-container" stylesheets="@../../Styles/User/UserMenu.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.UserMenuController">
+
+<AnchorPane prefHeight="601.0" prefWidth="50.0" styleClass="sidebar-container" stylesheets="@../../Styles/User/UserMenu.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.UserMenuController">
    <children>
-      <VBox alignment="CENTER" layoutX="25.0" layoutY="65.0" prefHeight="70.0" prefWidth="230.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="230.0" styleClass="logo-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Images/cht-logo.jpg" />
                </image>
             </ImageView>
-            <Label styleClass="sidebar-title" text="Employee">
-               <graphic>
-                  <FontAwesomeIconView glyphName="USER_ALT" size="20" />
-               </graphic>
-            </Label>
          </children>
       </VBox>
-      <VBox layoutX="10.0" layoutY="134.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="134.0">
+      <Button fx:id="addBooking_btn" layoutX="30.0" layoutY="114.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="223.0" text="New Booking">
+         <graphic>
+            <FontAwesomeIconView glyphName="PLUS" size="20" />
+         </graphic>
+         <styleClass>
+            <String fx:value="new-booking-menu-button" />
+            <String fx:value="menu-button" />
+         </styleClass>
+      </Button>
+      <VBox layoutX="30.0" layoutY="171.0" prefHeight="400.0" prefWidth="253.0" spacing="5.0" styleClass="menu-container" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <children>
-            <Button fx:id="dashboard_btn" mnemonicParsing="false" styleClass="menu-button" text="Dashboard">
+            <Button fx:id="dashboard_btn" mnemonicParsing="false" styleClass="menu-button" text="Dashboard" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="HOME" size="20" />
                </graphic>
             </Button>
-            <Button fx:id="addBooking_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="menu-button" text="New Booking">
-               <graphic>
-                  <FontAwesomeIconView glyphName="PLUS" size="20" />
-               </graphic>
-            </Button>
-            <Button fx:id="bookings_btn" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" styleClass="menu-button" text="Bookings">
+            <Button fx:id="bookings_btn" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" styleClass="menu-button" text="Bookings" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="CALENDAR" />
                </graphic>
             </Button>
-            <Button fx:id="clients_btn" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" styleClass="menu-button" text="Clients">
+            <Button fx:id="clients_btn" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" styleClass="menu-button" text="Clients" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="USERS" />
                </graphic>
             </Button>
-            <Button fx:id="tour_package_btn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" styleClass="menu-button" text="Tour Packages">
+            <Button fx:id="tour_package_btn" layoutX="10.0" layoutY="60.0" mnemonicParsing="false" styleClass="menu-button" text="Tour Packages" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="ARCHIVE" />
                </graphic>
             </Button>
-            <Button fx:id="trips_btn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" styleClass="menu-button" text="Trips">
+            <Button fx:id="trips_btn" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" styleClass="menu-button" text="Trips" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="MAP_MARKER" />
                </graphic>
             </Button>
-            <Button fx:id="hotel_btn" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" styleClass="menu-button" text="Hotel">
+            <Button fx:id="hotel_btn" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" styleClass="menu-button" text="Hotel" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="BUILDING" />
                </graphic>
             </Button>
-            <Button fx:id="transportation_btn" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" styleClass="menu-button" text="Transportation">
+            <Button fx:id="transportation_btn" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" styleClass="menu-button" text="Transportation" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="BUS" />
                </graphic>
             </Button>
-            <Button fx:id="payment_btn" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" styleClass="menu-button" text="Payments">
+            <Button fx:id="payment_btn" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" styleClass="menu-button" text="Payments" VBox.vgrow="ALWAYS">
                <graphic>
                   <FontAwesomeIconView glyphName="CREDIT_CARD" />
                </graphic>
             </Button>
-            <Button fx:id="logout_btn" layoutX="10.0" layoutY="185.0" mnemonicParsing="false" text="Logout">
-               <graphic>
-                  <FontAwesomeIconView glyphName="SIGN_OUT" />
-               </graphic>
-               <styleClass>
-                  <String fx:value="menu-button" />
-                  <String fx:value="logout-button" />
-               </styleClass>
-            </Button>
          </children>
-         <padding>
-            <Insets top="20.0" />
-         </padding>
       </VBox>
-      <FontAwesomeIconView layoutX="-531.0" layoutY="308.0" />
+      <Button fx:id="logout_btn" layoutX="23.0" layoutY="551.0" mnemonicParsing="false" text="Logout" AnchorPane.bottomAnchor="10.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="SIGN_OUT" />
+         </graphic>
+         <styleClass>
+            <String fx:value="menu-button" />
+            <String fx:value="logout-button" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

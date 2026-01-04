@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.shape.Circle?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<HBox xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      alignment="CENTER_LEFT"
-      fx:controller="com.cht.travelmanagement.Controllers.User.BookingItemController"
-      spacing="20"
-      style="-fx-background-color: white; -fx-padding: 10;">
+<HBox alignment="CENTER_LEFT" spacing="16" styleClass="booking-item-container" stylesheets="@../../Styles/User/BookingItem.css" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingItemController">
+   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+      <children>
+      
+          <!-- Booking ID -->
+          <Label fx:id="lblId" minWidth="100" styleClass="booking-id" text="TRP-001" />
+      </children>
+   </HBox>
 
-    <Label fx:id="lblId"
-           text="TRP-001"
-           style="-fx-text-fill: #2196F3; -fx-font-weight: bold;" />
-
-    <HBox alignment="CENTER_LEFT" spacing="10">
-        <StackPane>
-            <Circle radius="18" fill="#8e44ad" />
-            <Label fx:id="lblInitials"
-                   text="JS"
-                   style="-fx-text-fill: white; -fx-font-weight: bold;" />
+    <!-- Client Section with Avatar -->
+    <HBox alignment="CENTER_LEFT" minWidth="150" spacing="8" HBox.hgrow="ALWAYS">
+        <StackPane prefHeight="35" prefWidth="35">
+            <Circle radius="17.5" styleClass="client-avatar-circle" />
+            <Label fx:id="lblInitials" styleClass="client-avatar" text="JS" />
         </StackPane>
-        <Label fx:id="lblName" text="John Smith" />
+        <Label fx:id="lblName" styleClass="client-name" text="John Smith" />
     </HBox>
-  
-    <HBox alignment="CENTER_LEFT" spacing="5">
-        <FontAwesomeIconView glyphName="MAP_MARKER" fill="#7f8c8d" />
-        <Label fx:id="lblLocation" text="Boracay" />
+   <HBox alignment="CENTER">
+      <children>
+           <Label fx:id="lblLocation" alignment="CENTER" prefHeight="17.0" prefWidth="88.0" styleClass="booking-location" text="Boracay" textAlignment="CENTER">
+            <graphic>
+                 <FontAwesomeIconView glyphName="MAP_MARKER" styleClass="booking-icon" />
+            </graphic>
+         </Label>
+      </children>
+   </HBox>
+
+    <!-- Package Section -->
+    <Label fx:id="lblPackage" alignment="CENTER" minWidth="150" styleClass="booking-package" text="Beach Paradise" HBox.hgrow="ALWAYS" />
+
+    <!-- Date Section -->
+    <HBox alignment="CENTER_LEFT" minWidth="130" spacing="6" HBox.hgrow="ALWAYS">
+        <FontAwesomeIconView glyphName="CALENDAR" styleClass="booking-icon" />
+        <Label fx:id="lblDate" styleClass="booking-date" text="Nov 5, 2025" />
     </HBox>
 
-    <Label fx:id="lblPackage" text="Beach Paradise" prefWidth="150" />
-
-    <HBox alignment="CENTER_LEFT" spacing="5">
-        <FontAwesomeIconView glyphName="CALENDAR" fill="#7f8c8d" />
-        <Label fx:id="lblDate" text="Nov 5, 2025" />
-    </HBox>
-
-    <Label fx:id="lblStatus"
-           text="Ongoing"
-           style="-fx-background-color: #007bff;
-                  -fx-text-fill: white;
-                  -fx-background-radius: 15;
-                  -fx-padding: 5 15 5 15;" />
+    <!-- Status Badge -->
+    <Label fx:id="lblStatus" minWidth="80" styleClass="status-badge, status-ongoing" text="Ongoing" HBox.hgrow="ALWAYS" />
+ss="status-badge, status-ongoing"
+           minWidth="80" />
 
 </HBox>

@@ -4,23 +4,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" stylesheets="@../../Styles/User/Dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.DashboardController">
-   <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="dashboard-container">
+<AnchorPane stylesheets="@../../Styles/User/Dashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.DashboardController">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="dashboard-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT">
+            <!-- Welcome Section -->
+            <VBox spacing="5" styleClass="welcome-container">
+               <Label fx:id="welcome_lbl" styleClass="welcome-title" text="Welcome back, Employee" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="welcome-subtitle" text="Here's a quick overview of your travel agency performance." wrappingWidth="600" />
+            </VBox>
+
+            <!-- Header and Create Booking Button -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="header-title" text="Dashboard Overview" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header-subtitle" text="Welcome back! Here's what's happening with your travel agency today." wrappingWidth="397.5546875" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header-subtitle" text="Monitor all your metrics and recent activities" wrappingWidth="397.5546875" />
                      </children>
                   </VBox>
                   <Button fx:id="newBooking_btn" mnemonicParsing="false" styleClass="primary-button" text="Create New Booking">
@@ -30,116 +38,104 @@
                   </Button>
                </children>
             </HBox>
-            <HBox spacing="24.0">
+
+            <!-- Statistics Cards -->
+            <HBox spacing="20">
                <children>
-                  <VBox layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <HBox alignment="TOP_LEFT" spacing="15">
                            <children>
                               <StackPane styleClass="stat-icon-container">
                                  <children>
-                                    <FontAwesomeIconView glyphName="USERS" size="2em" styleClass="stat-icon" />
+                                    <FontAwesomeIconView glyphName="USERS" size="1.8em" styleClass="stat-icon" />
                                  </children>
                               </StackPane>
-                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                              <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                                  <Label styleClass="stat-growth-text" text="+5%" />
                               </VBox>
                            </children>
-                           <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="Total Customers" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="TOTAL CUSTOMERS" />
                         <Label fx:id="totalCustomer_lbl" styleClass="stat-value" text="248" />
-                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Active Travelers" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Active Travelers" />
                      </children>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <HBox alignment="TOP_LEFT" spacing="15">
                            <children>
                               <StackPane styleClass="stat-icon-container">
                                  <children>
-                                    <FontAwesomeIconView glyphName="MAP_MARKER" size="2em" styleClass="stat-icon" />
+                                    <FontAwesomeIconView glyphName="MAP_MARKER" size="1.8em" styleClass="stat-icon" />
                                  </children>
                               </StackPane>
-                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label styleClass="stat-growth-text" text="+5%" />
-                                 </children>
+                              <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                 <Label styleClass="stat-growth-text" text="+5%" />
                               </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10" left="10" right="10" top="10" />
-                           </padding>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="Ongoing Trips" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="ONGOING TRIPS" />
                         <Label fx:id="ongoingTrips_lbl" styleClass="stat-value" text="248" />
-                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="In progress" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="In progress" />
                      </children>
                   </VBox>
-                  <VBox layoutX="1580.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <HBox alignment="TOP_LEFT" spacing="15">
                            <children>
                               <StackPane styleClass="stat-icon-container">
                                  <children>
-                                    <FontAwesomeIconView glyphName="CALENDAR" size="2em" styleClass="stat-icon" />
+                                    <FontAwesomeIconView glyphName="CALENDAR" size="1.8em" styleClass="stat-icon" />
                                  </children>
                               </StackPane>
-                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label styleClass="stat-growth-text" text="+5%" />
-                                 </children>
+                              <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                 <Label styleClass="stat-growth-text" text="+5%" />
                               </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10" left="10" right="10" top="10" />
-                           </padding>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="Upcoming Trips" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="UPCOMING TRIPS" />
                         <Label fx:id="upcomingTrips_lbl" styleClass="stat-value" text="248" />
-                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Scheduled" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Scheduled" />
                      </children>
                   </VBox>
-                  <VBox layoutX="1580.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stat-card" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <HBox alignment="TOP_LEFT" spacing="15">
                            <children>
                               <StackPane styleClass="stat-icon-container">
                                  <children>
-                                    <FontAwesomeIconView glyphName="CHECK" size="2em" styleClass="stat-icon" />
+                                    <FontAwesomeIconView glyphName="CHECK" size="1.8em" styleClass="stat-icon" />
                                  </children>
                               </StackPane>
-                              <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label styleClass="stat-growth-text" text="+5%" />
-                                 </children>
+                              <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                 <Label styleClass="stat-growth-text" text="+5%" />
                               </VBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10" left="10" right="10" top="10" />
-                           </padding>
                         </HBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="Completed Trips" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-title" text="COMPLETED TRIPS" />
                         <Label fx:id="completedTrips_lbl" styleClass="stat-value" text="248" />
-                        <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Active Travelers" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="stat-subtext" text="Finished" />
                      </children>
                   </VBox>
                </children>
                <VBox.margin>
-                  <Insets left="14.0" right="14.0" />
+                  <Insets left="0.0" right="0.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
+
+            <!-- Recent Trips Section -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="section-title" text="Recent Trips" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Latest bookings and activities" wrappingWidth="397.5546875" />
+                        <Label styleClass="section-title" text="Recent Bookings" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header-subtitle" text="Latest activities from your agency" wrappingWidth="397.5546875" />
                      </children>
                   </VBox>
                   <Button fx:id="viewAll_btn" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="secondary-button" text="View All">
                      <graphic>
-                        <FontAwesomeIconView glyphName="LIST_UL" />
+                        <FontAwesomeIconView glyphName="ARROW_RIGHT" />
                      </graphic>
                   </Button>
                </children>
@@ -147,15 +143,24 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ListView fx:id="bookingList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets left="14.0" right="14.0" />
-               </padding>
-            </ListView>
+            <TableView fx:id="booking_table" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="bookingId_col" prefWidth="75.0" text="Booking ID" />
+                  <TableColumn fx:id="client_col" prefWidth="75.0" text="Client" />
+                  <TableColumn fx:id="destination_col" prefWidth="75.0" text="Destination" />
+                  <TableColumn fx:id="package_col" prefWidth="75.0" text="Package" />
+                  <TableColumn fx:id="startDate_col" prefWidth="75.0" text="Start Date" />
+                  <TableColumn fx:id="endDate_col" prefWidth="75.0" text="End Date" />
+                  <TableColumn fx:id="status_col" prefWidth="75.0" text="Status" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
          <padding>
-            <Insets left="14.0" right="14.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="0.0" />
          </padding>
       </VBox>
-   </content>
-</ScrollPane>
+   </children>
+</AnchorPane>

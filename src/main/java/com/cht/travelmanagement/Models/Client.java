@@ -1,7 +1,13 @@
 package com.cht.travelmanagement.Models;
 
-import javafx.beans.property.*;
 import java.time.LocalDate;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Client {
     private final IntegerProperty clientId;
@@ -20,6 +26,16 @@ public class Client {
         this.contactNumber = new SimpleStringProperty(this, "contactNumber", contactNumber);
         this.customerType = new SimpleStringProperty(this, "customerType", customerType);
         this.dateRegistered = new SimpleObjectProperty<>(this, "dateRegistered", dateRegistered);
+    }
+
+    public Client(int clientId, String name, String email, String contactNumber, int assignedEmployeeId) {
+        this.clientId = new SimpleIntegerProperty(this, "clientId", clientId);
+        this.name = new SimpleStringProperty(this, "name", name);
+        this.email = new SimpleStringProperty(this, "email", email);
+        this.address = new SimpleStringProperty(this, "address", "");
+        this.contactNumber = new SimpleStringProperty(this, "contactNumber", contactNumber);
+        this.customerType = new SimpleStringProperty(this, "customerType", "");
+        this.dateRegistered = new SimpleObjectProperty<>(this, "dateRegistered", LocalDate.now());
     }
 
     public int getClientId() { return clientId.get(); }

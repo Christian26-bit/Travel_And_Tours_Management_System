@@ -17,7 +17,7 @@ import java.util.Objects;
 public class UserViewFactory extends ViewFactory{
 
     // Views
-    private ScrollPane userDashboardView;
+    private AnchorPane userDashboardView;
     private  BorderPane newBookingView;
     private  AnchorPane bookingListView;
     private AnchorPane customerListView;
@@ -58,7 +58,7 @@ public class UserViewFactory extends ViewFactory{
         return bookingStep;
     }
 
-    public ScrollPane getUserDashboardPane() {
+    public AnchorPane getUserDashboardPane() {
         if (userDashboardView == null) {
             try {
                 userDashboardView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Dashboard-view.fxml")));

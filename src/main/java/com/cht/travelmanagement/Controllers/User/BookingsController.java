@@ -4,20 +4,49 @@ import com.cht.travelmanagement.Models.Booking;
 import com.cht.travelmanagement.Models.Model;
 import com.cht.travelmanagement.View.UserMenuOption;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookingsController implements Initializable {
-    public ListView<Booking> bookingList;
-    public Button newBooking_btn;
+
+    @FXML
+    private TableView<Booking> booking_table;
+
+    @FXML
+    private TableColumn<Booking, String> bookingId_col;
+
+    @FXML
+    private TableColumn<Booking, String> client_col;
+
+    @FXML
+    private TableColumn<Booking, String> destination_col;
+
+    @FXML
+    private TableColumn<Booking, String> endDate_col;
+
+    @FXML
+    private Button newBooking_btn;
+
+    @FXML
+    private TableColumn<Booking, String> package_col;
+
+    @FXML
+    private TextField search_fld;
+
+    @FXML
+    private TableColumn<Booking, String> startDate_col;
+
+    @FXML
+    private TableColumn<Booking, String> status_col;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -27,7 +56,7 @@ public class BookingsController implements Initializable {
         ObservableList<Booking> recentBookings = Model.getInstance().getAllBookings();
         newBooking_btn.setOnAction(event -> {onNewBookingButtonClicked();});
 
-        loadBookings(recentBookings , bookingList);
+        loadBookings(recentBookings , booking_table);
     }
 
     private void onNewBookingButtonClicked() {
@@ -37,27 +66,20 @@ public class BookingsController implements Initializable {
     /**
      * Load bookings into the ListView with custom cells.
      */
-    public void loadBookings(ObservableList<Booking> bookings, ListView<Booking> bookingList) {
-        bookingList.setItems(bookings);
-        bookingList.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Booking booking, boolean empty) {
-                super.updateItem(booking, empty);
-                if (empty || booking == null) {
-                    setGraphic(null);
-                } else {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/User/BookingItem-view.fxml"));
-                        Node node = loader.load();
-                        BookingItemController controller = loader.getController();
-                        controller.setData(booking);
-                        setGraphic(node);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        setGraphic(null);
-                    }
-                }
-            }
-        });
+    public void loadBookings(ObservableList<Booking> bookings, TableView<Booking> booking_table) {
+        booking_table.setItems(bookings);
+
+        bookingId_col.setCellValueFactory(cellData -> cellData.getValue().bookingIdProperty().asString());
+        client_col.setCellValueFactory(cellData -> cellData.getValue().clientNameProperty());
+        package_col.setCellValueFactory(cellData -> cellData.getValue().packageNameProperty());
+        destination_col.setCellValueFactory(cellData -> cellData.getValue().destinationProperty());
+        startDate_col.setCellValueFactory(cellData -> cellData.getValue().bookingDateProperty().asString());
+        endDate_col.setCellValueFactory(cellData -> cellData.getValue().bookingDateProperty().asString());
+        status_col.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+
     }
+
+    /**
+     *
+     */
 }

@@ -1,13 +1,18 @@
 package com.cht.travelmanagement.Models.Repository.Implementation;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
 import com.cht.travelmanagement.Models.Client;
 import com.cht.travelmanagement.Models.DatabaseDriver;
 import com.cht.travelmanagement.Models.Repository.ClientRepository;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.sql.*;
-import java.time.LocalDate;
 
 public class ClientRepositoryImpl implements ClientRepository {
     public final ObservableList<Client> clients;
@@ -42,6 +47,13 @@ public class ClientRepositoryImpl implements ClientRepository {
             throw new RuntimeException(e);
         }
         return clients;
+    }
+
+    @Override
+    public Object getAuthenticatedUser() {
+        // Implementation for retrieving the authenticated user
+        // This is a placeholder and should be replaced with actual logic
+        return null;
     }
 
 }

@@ -2,8 +2,21 @@
 
 /* 1. Main Sidebar Background */
 .sidebar-container {
-    -fx-background-color: #FFFFFF; /* Pure White to blend with your Logo */
+    -fx-background-color: #ffffff; /* Pure White to blend with your Logo */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Subtle shadow on the right */
+    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-pref-width: 250;
+}
+
+.logo-container {
+    -fx-background-color: #ffffff;
+    -fx-alignment: center;
+    -fx-background-radius: 10;
+}
+.menu-container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
 }
 
 /* 2. The Title/Header Label (Employee) */
@@ -25,6 +38,16 @@
     -fx-padding: 10 0 10 20;
     -fx-pref-width: 230;
 }
+
+.new-booking-menu-button {
+    -fx-background-color: #3498db; /* Bright Blue Background */
+    -fx-text-fill: #ffffff; /* White Text */
+    -fx-pref-width: 223;
+}
+.new-booking-menu-button .font-awesome-icon-view, .new-booking-menu-button .glyph-icon {
+    -fx-fill: #ffffff;
+}
+
 
 /* 4. Target the ICONS (Normal State) */
 /* This forces the icon to match the text color */
@@ -50,6 +73,11 @@
     -fx-background-color: #D6EAF8;
 }
 
+.logout-button {
+    -fx-background-color: #ffffff;
+    -fx-pref-width: 230;
+    
+}
 /* 8. Special Logout Button - Red on Hover */
 .logout-button:hover {
     -fx-background-color: #FDEDEC; /* Very Light Red */
@@ -68,9 +96,36 @@
     -fx-border-color: #3498db;
     -fx-border-width: 0 0 0 4;
 }
+.new-booking-menu-button:hover {
+    -fx-background-color: #3498db;
+    -fx-border-width:0;
+    -fx-text-fill: #ffffff;
+}
+.new-booking-menu-button:hover .font-awesome-icon-view, .new-booking-menu-button:hover .glyph-icon {
+    -fx-fill: #ffffff;
+}
+.new-booking-menu-button:active {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #ffffff;
+    -fx-border-width:0;
+}
+
+/* Active state for New Booking button (when .menu-button-active class is added) */
+.new-booking-menu-button.menu-button-active {
+    -fx-background-color: #2980b9; /* Darker Blue for Active */
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #2980b9;
+    -fx-border-width: 0 0 0 4;
+}
+
+.new-booking-menu-button.menu-button-active .font-awesome-icon-view,
+.new-booking-menu-button.menu-button-active .glyph-icon {
+    -fx-fill: #ffffff;
+}
 
 /* Force the Icon to stay Blue when active */
 .menu-button-active .font-awesome-icon-view,
 .menu-button-active .glyph-icon {
     -fx-fill: #3498db;
 }
+
