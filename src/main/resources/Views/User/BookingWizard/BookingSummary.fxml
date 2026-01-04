@@ -3,79 +3,126 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 0 1;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingSummaryController">
-   <padding>
-      <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
-   </padding>
+<VBox alignment="TOP_CENTER" prefWidth="280.0" spacing="0" styleClass="summary-panel" 
+      stylesheets="@../../../Styles/User/BookingWizard.css"
+      xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingSummaryController">
    <children>
-      <!-- Header -->
-      <Text style="-fx-font-size: 16; -fx-font-weight: bold; -fx-fill: #2C3E50;" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Summary" />
-      <Label fx:id="complete_percent_lbl" style="-fx-text-fill: #7F8C8D;" text="0% Complete" />
-      
-      <Separator />
-      
-      <!-- Summary Items -->
-      <VBox spacing="15.0" VBox.vgrow="ALWAYS">
+      <!-- Header Section -->
+      <VBox alignment="CENTER" spacing="8" styleClass="summary-header">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
+         </padding>
          <children>
-            <!-- Customer Section -->
-            <VBox spacing="3.0">
-               <children>
-                  <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="👤 Customer" />
-                  <Label fx:id="customer_lbl" style="-fx-text-fill: #7F8C8D;" text="Not set" wrapText="true" />
-               </children>
-            </VBox>
-            
-            <!-- Package Section -->
-            <VBox spacing="3.0">
-               <children>
-                  <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="📦 Package" />
-                  <Label fx:id="package_lbl" style="-fx-text-fill: #7F8C8D;" text="Not selected" wrapText="true" />
-               </children>
-            </VBox>
-            
-            <!-- Hotel Section -->
-            <VBox spacing="3.0">
-               <children>
-                  <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="🏨 Hotel" />
-                  <Label fx:id="hotel_lbl" style="-fx-text-fill: #7F8C8D;" text="Not selected" wrapText="true" />
-               </children>
-            </VBox>
-            
-            <!-- Transport Section -->
-            <VBox spacing="3.0">
-               <children>
-                  <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="🚐 Transport" />
-                  <Label fx:id="transport_lbl" style="-fx-text-fill: #7F8C8D;" text="Not selected" wrapText="true" />
-               </children>
-            </VBox>
+            <HBox alignment="CENTER" spacing="10">
+               <FontAwesomeIconView glyphName="SHOPPING_CART" size="20" styleClass="summary-header-icon" />
+               <Label styleClass="summary-title" text="Booking Summary" />
+            </HBox>
+            <HBox alignment="CENTER" spacing="8">
+               <Circle radius="6" styleClass="completion-dot" />
+               <Label fx:id="complete_percent_lbl" styleClass="completion-label" text="0% Complete" />
+            </HBox>
          </children>
       </VBox>
       
-      <Separator />
+      <!-- Summary Items Section -->
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="summary-scroll" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="0" styleClass="summary-items-container">
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+               <children>
+                  <!-- Customer Section -->
+                  <VBox styleClass="summary-item">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <StackPane styleClass="summary-icon-container">
+                              <FontAwesomeIconView glyphName="USER" size="14" styleClass="summary-icon" />
+                           </StackPane>
+                           <VBox spacing="2" HBox.hgrow="ALWAYS">
+                              <Label styleClass="summary-item-title" text="Customer" />
+                              <Label fx:id="customer_lbl" styleClass="summary-item-value" text="Not set" wrapText="true" />
+                           </VBox>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Package Section -->
+                  <VBox styleClass="summary-item">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <StackPane styleClass="summary-icon-container">
+                              <FontAwesomeIconView glyphName="SUITCASE" size="14" styleClass="summary-icon" />
+                           </StackPane>
+                           <VBox spacing="2" HBox.hgrow="ALWAYS">
+                              <Label styleClass="summary-item-title" text="Package" />
+                              <Label fx:id="package_lbl" styleClass="summary-item-value" text="Not selected" wrapText="true" />
+                           </VBox>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Hotel Section -->
+                  <VBox styleClass="summary-item">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <StackPane styleClass="summary-icon-container">
+                              <FontAwesomeIconView glyphName="BUILDING" size="14" styleClass="summary-icon" />
+                           </StackPane>
+                           <VBox spacing="2" HBox.hgrow="ALWAYS">
+                              <Label styleClass="summary-item-title" text="Hotel" />
+                              <Label fx:id="hotel_lbl" styleClass="summary-item-value" text="Not selected" wrapText="true" />
+                           </VBox>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Transport Section -->
+                  <VBox styleClass="summary-item">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <StackPane styleClass="summary-icon-container">
+                              <FontAwesomeIconView glyphName="CAR" size="14" styleClass="summary-icon" />
+                           </StackPane>
+                           <VBox spacing="2" HBox.hgrow="ALWAYS">
+                              <Label styleClass="summary-item-title" text="Transport" />
+                              <Label fx:id="transport_lbl" styleClass="summary-item-value" text="Not selected" wrapText="true" />
+                           </VBox>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
       
       <!-- Total Cost Section -->
-      <VBox alignment="CENTER" spacing="5.0">
+      <VBox alignment="CENTER" spacing="8" styleClass="summary-total-section">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
          <children>
-            <Label style="-fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Total Cost" />
-            <Label fx:id="total_cost_lbl" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" text="PHP 0" />
-            <Text fx:id="cost_hint_txt" style="-fx-font-size: 10; -fx-fill: #7F8C8D;" strokeType="OUTSIDE" strokeWidth="0.0" text="Add items to see total" textAlignment="CENTER" wrappingWidth="200.0" />
-         </children>
-      </VBox>
-      
-      <Separator />
-      
-      <!-- Progress Section -->
-      <VBox alignment="CENTER" spacing="8.0">
-         <children>
-            <HBox alignment="CENTER" spacing="10.0">
-               <children>
-                  <Text style="-fx-font-size: 12; -fx-fill: #2C3E50;" strokeType="OUTSIDE" strokeWidth="0.0" text="Completion" />
-                  <Label fx:id="completion_count_lbl" style="-fx-font-weight: bold;" text="0/5" />
-               </children>
-            </HBox>
-            <ProgressBar fx:id="progress_bar" prefHeight="12.0" prefWidth="200.0" progress="0.0" style="-fx-accent: #007bff;" />
+            <!-- Progress Ring -->
+            <StackPane>
+               <Circle radius="35" styleClass="progress-ring-bg" />
+               <Circle fx:id="progress_ring" radius="35" styleClass="progress-ring" />
+               <VBox alignment="CENTER" spacing="0">
+                  <Label fx:id="completion_count_lbl" styleClass="progress-ring-text" text="0/5" />
+               </VBox>
+            </StackPane>
+            
+            <Separator styleClass="summary-separator" />
+            
+            <VBox alignment="CENTER" spacing="4">
+               <Label styleClass="total-label" text="Estimated Total" />
+               <Label fx:id="total_cost_lbl" styleClass="total-amount" text="₱0.00" />
+               <Label fx:id="cost_hint_txt" styleClass="total-hint" text="Add items to see total" />
+            </VBox>
          </children>
       </VBox>
    </children>

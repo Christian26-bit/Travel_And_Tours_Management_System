@@ -3,97 +3,100 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.ProgressIndicatorController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-	<children>
-		<!-- Progress Indicator Section -->
-		<VBox prefHeight="120" spacing="16" style="-fx-padding: 32 32 16 32;">
-			<!-- Progress Line with Steps -->
-			<HBox alignment="CENTER" spacing="0">
-				<!-- Step 1: Customer -->
-				<VBox fx:id="step1_indicator" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
-					<StackPane prefHeight="44" prefWidth="44">
-						<Circle fill="#007bff" radius="22" stroke="#007bff" strokeWidth="2" />
-						<Label style="-fx-font-family: 'Inter'; -fx-font-size:  16; -fx-font-weight:  bold; -fx-text-fill: white;" text="1" />
-					</StackPane>
-					<Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill:  #2C3E50;" text="Customer" />
-				</VBox>
-
-				<!-- Progress Line 1 -->
-				<VBox alignment="CENTER" prefWidth="80" HBox.hgrow="ALWAYS">
-					<Label style="-fx-font-family: 'Inter'; -fx-text-fill: #E0E0E0; -fx-font-size: 10;" text="━━━━━━━━━━" />
-				</VBox>
-
-				<!-- Step 2: Package -->
-				<VBox fx:id="step2_indicator" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
-					<StackPane prefHeight="44" prefWidth="44">
-						<Circle fill="#E0E0E0" radius="22" stroke="#E0E0E0" strokeWidth="2" />
-						<Label style="-fx-font-family: 'Inter'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="2" />
-					</StackPane>
-					<Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill: #7F8C8D;" text="Package" />
-				</VBox>
-
-				<!-- Progress Line 2 -->
-				<VBox alignment="CENTER" prefWidth="80" HBox.hgrow="ALWAYS">
-					<Label style="-fx-font-family: 'Inter'; -fx-text-fill: #E0E0E0; -fx-font-size: 10;" text="━━━━━━━━━━" />
-				</VBox>
-
-				<!-- Step 3: Travel Details -->
-				<VBox fx:id="step3_indicator" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
-					<StackPane prefHeight="44" prefWidth="44">
-						<Circle fill="#E0E0E0" radius="22" stroke="#E0E0E0" strokeWidth="2" />
-						<Label style="-fx-font-family:  'Inter'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="3" />
-					</StackPane>
-					<Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill: #7F8C8D;" text="Customization" />
-				</VBox>
-
-				<!-- Progress Line 3 -->
-				<VBox alignment="CENTER" prefWidth="80" HBox.hgrow="ALWAYS">
-					<Label style="-fx-font-family: 'Inter'; -fx-text-fill: #E0E0E0; -fx-font-size: 10;" text="━━━━━━━━━━" />
-				</VBox>
-
-				<!-- Step 4: Payment -->
-				<VBox fx:id="step4_indicator" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
-					<StackPane prefHeight="44" prefWidth="44">
-						<Circle fill="#E0E0E0" radius="22" stroke="#E0E0E0" strokeWidth="2" />
-						<Label style="-fx-font-family:  'Inter'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="4" />
-					</StackPane>
-					<Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill: #7F8C8D;" text="Hotel Selection" />
-				</VBox>
-
-				<!-- Progress Line 4 -->
-				<VBox alignment="CENTER" prefWidth="80" HBox.hgrow="ALWAYS">
-					<Label style="-fx-font-family: 'Inter'; -fx-text-fill: #E0E0E0; -fx-font-size: 10;" text="━━━━━━━━━━" />
-				</VBox>
-
-				<!-- Step 5: Confirm -->
-				<VBox fx:id="step5_indicator" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
-					<StackPane prefHeight="44" prefWidth="44">
-						<Circle fill="#E0E0E0" radius="22" stroke="#E0E0E0" strokeWidth="2" />
-						<Label style="-fx-font-family:  'Inter'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="5" />
-					</StackPane>
-					<Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill: #7F8C8D;" text="Transportation" />
-				</VBox>
-            <VBox alignment="CENTER" layoutX="466.0" layoutY="10.0" prefWidth="80">
-               <children>
-                  <Label style="-fx-font-family: 'Inter'; -fx-text-fill: #E0E0E0; -fx-font-size: 10;" text="━━━━━━━━━━" />
-               </children>
-            </VBox>
-            <VBox fx:id="step6_indicator" alignment="CENTER" layoutX="546.0" layoutY="10.0" prefHeight="71.0" prefWidth="75.0" spacing="8">
-               <children>
-                  <StackPane prefHeight="44" prefWidth="44">
-                     <children>
-                        <Circle fill="#E0E0E0" radius="22" stroke="#E0E0E0" strokeWidth="2" />
-                        <Label style="-fx-font-family:  'Inter'; -fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;" text="6" />
-                     </children>
+<AnchorPane fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.ProgressIndicatorController" 
+            stylesheets="@../../../Styles/User/BookingWizard.css"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <!-- Modern Progress Indicator with gradient background -->
+      <VBox styleClass="progress-header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="25.0" />
+         </padding>
+         <children>
+            <!-- Progress Steps Container -->
+            <HBox alignment="CENTER" spacing="0">
+               <!-- Step 1: Customer -->
+               <VBox fx:id="step1_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step1_circle" radius="24" styleClass="step-circle-active" />
+                     <Circle radius="20" styleClass="step-circle-inner" />
+                     <Label styleClass="step-number" text="1" />
                   </StackPane>
-                  <Label style="-fx-font-family: 'Inter'; -fx-font-size: 12; -fx-text-fill: #7F8C8D;" text="Confirmation" wrapText="true" />
-               </children>
-            </VBox>
-			</HBox>
-		</VBox>
-	</children>
+                  <Label styleClass="step-label-active" text="Customer" />
+               </VBox>
+
+               <!-- Progress Line 1-2 -->
+               <Region fx:id="line1" styleClass="progress-line-inactive" HBox.hgrow="ALWAYS" />
+
+               <!-- Step 2: Package -->
+               <VBox fx:id="step2_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step2_circle" radius="24" styleClass="step-circle-inactive" />
+                     <Circle radius="20" styleClass="step-circle-inner-inactive" />
+                     <Label styleClass="step-number-inactive" text="2" />
+                  </StackPane>
+                  <Label styleClass="step-label-inactive" text="Package" />
+               </VBox>
+
+               <!-- Progress Line 2-3 -->
+               <Region fx:id="line2" styleClass="progress-line-inactive" HBox.hgrow="ALWAYS" />
+
+               <!-- Step 3: Customization -->
+               <VBox fx:id="step3_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step3_circle" radius="24" styleClass="step-circle-inactive" />
+                     <Circle radius="20" styleClass="step-circle-inner-inactive" />
+                     <Label styleClass="step-number-inactive" text="3" />
+                  </StackPane>
+                  <Label styleClass="step-label-inactive" text="Add-ons" />
+               </VBox>
+
+               <!-- Progress Line 3-4 -->
+               <Region fx:id="line3" styleClass="progress-line-inactive" HBox.hgrow="ALWAYS" />
+
+               <!-- Step 4: Hotel Selection -->
+               <VBox fx:id="step4_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step4_circle" radius="24" styleClass="step-circle-inactive" />
+                     <Circle radius="20" styleClass="step-circle-inner-inactive" />
+                     <Label styleClass="step-number-inactive" text="4" />
+                  </StackPane>
+                  <Label styleClass="step-label-inactive" text="Hotel" />
+               </VBox>
+
+               <!-- Progress Line 4-5 -->
+               <Region fx:id="line4" styleClass="progress-line-inactive" HBox.hgrow="ALWAYS" />
+
+               <!-- Step 5: Transportation -->
+               <VBox fx:id="step5_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step5_circle" radius="24" styleClass="step-circle-inactive" />
+                     <Circle radius="20" styleClass="step-circle-inner-inactive" />
+                     <Label styleClass="step-number-inactive" text="5" />
+                  </StackPane>
+                  <Label styleClass="step-label-inactive" text="Transport" />
+               </VBox>
+
+               <!-- Progress Line 5-6 -->
+               <Region fx:id="line5" styleClass="progress-line-inactive" HBox.hgrow="ALWAYS" />
+
+               <!-- Step 6: Confirmation -->
+               <VBox fx:id="step6_indicator" alignment="CENTER" spacing="10" styleClass="step-indicator" HBox.hgrow="NEVER">
+                  <StackPane styleClass="step-circle-container">
+                     <Circle fx:id="step6_circle" radius="24" styleClass="step-circle-inactive" />
+                     <Circle radius="20" styleClass="step-circle-inner-inactive" />
+                     <Label styleClass="step-number-inactive" text="6" />
+                  </StackPane>
+                  <Label styleClass="step-label-inactive" text="Confirm" />
+               </VBox>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

@@ -3,26 +3,96 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
+<AnchorPane stylesheets="@../../../Styles/User/BookingWizard.css" style="-fx-background-color: #F4F7FE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
    <children>
-      <VBox layoutX="50.0" layoutY="20.0" prefHeight="360.0" prefWidth="500.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
-         <children>
-            <Label style="-fx-font-weight: bold;" text="Available Add-ons" />
-            <VBox spacing="10.0">
+      <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox spacing="25" style="-fx-background-color: white;">
+               <padding>
+                  <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+               </padding>
                <children>
-                  <CheckBox fx:id="breakfast_check" mnemonicParsing="false" text="Include Daily Breakfast (+500 PHP)" />
-                  <CheckBox fx:id="insurance_check" mnemonicParsing="false" text="Travel Insurance (+1000 PHP)" />
-                  <CheckBox fx:id="guide_check" mnemonicParsing="false" text="Private Tour Guide (+2000 PHP)" />
-                  <CheckBox fx:id="pickup_check" mnemonicParsing="false" text="Airport Pickup / Drop-off (+800 PHP)" />
+                  <!-- Header -->
+                  <VBox spacing="8">
+                     <children>
+                        <Label styleClass="header-title" text="Customize Your Trip" />
+                        <Label styleClass="header-subtitle" text="Add optional services to enhance your travel experience" />
+                     </children>
+                  </VBox>
+                  
+                  <!-- Add-ons Section -->
+                  <VBox spacing="15" style="-fx-background-color: #F8FAFF; -fx-background-radius: 16; -fx-padding: 25;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <FontAwesomeIconView glyphName="PLUS_CIRCLE" size="18" style="-fx-fill: #4318FF;" />
+                           <Label styleClass="section-label" text="Available Add-ons" />
+                        </HBox>
+                        
+                        <!-- Add-on Items -->
+                        <VBox spacing="12">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #E0E5F2; -fx-border-radius: 12;">
+                                 <CheckBox fx:id="breakfast_check" mnemonicParsing="false" styleClass="check-box" />
+                                 <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2B3674;" text="Daily Breakfast" />
+                                    <Label style="-fx-font-size: 12; -fx-text-fill: #A3AED0;" text="Start each day with a delicious buffet breakfast" />
+                                 </VBox>
+                                 <Label style="-fx-font-weight: bold; -fx-text-fill: #4318FF;" text="+₱500" />
+                              </HBox>
+                              
+                              <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #E0E5F2; -fx-border-radius: 12;">
+                                 <CheckBox fx:id="insurance_check" mnemonicParsing="false" styleClass="check-box" />
+                                 <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2B3674;" text="Travel Insurance" />
+                                    <Label style="-fx-font-size: 12; -fx-text-fill: #A3AED0;" text="Comprehensive coverage for peace of mind" />
+                                 </VBox>
+                                 <Label style="-fx-font-weight: bold; -fx-text-fill: #4318FF;" text="+₱1,000" />
+                              </HBox>
+                              
+                              <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #E0E5F2; -fx-border-radius: 12;">
+                                 <CheckBox fx:id="guide_check" mnemonicParsing="false" styleClass="check-box" />
+                                 <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2B3674;" text="Private Tour Guide" />
+                                    <Label style="-fx-font-size: 12; -fx-text-fill: #A3AED0;" text="Personalized guided tours with local expert" />
+                                 </VBox>
+                                 <Label style="-fx-font-weight: bold; -fx-text-fill: #4318FF;" text="+₱2,000" />
+                              </HBox>
+                              
+                              <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 15; -fx-border-color: #E0E5F2; -fx-border-radius: 12;">
+                                 <CheckBox fx:id="pickup_check" mnemonicParsing="false" styleClass="check-box" />
+                                 <VBox spacing="2" HBox.hgrow="ALWAYS">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2B3674;" text="Airport Transfer" />
+                                    <Label style="-fx-font-size: 12; -fx-text-fill: #A3AED0;" text="Convenient pickup and drop-off service" />
+                                 </VBox>
+                                 <Label style="-fx-font-weight: bold; -fx-text-fill: #4318FF;" text="+₱800" />
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Special Requests Section -->
+                  <VBox spacing="15">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                           <FontAwesomeIconView glyphName="COMMENT" size="18" style="-fx-fill: #4318FF;" />
+                           <Label styleClass="section-label" text="Special Requests" />
+                        </HBox>
+                        <Label styleClass="header-subtitle" text="Let us know about any dietary restrictions, allergies, or special needs" />
+                        <TextArea fx:id="special_requests_area" prefHeight="120" promptText="Type your special requests here..." styleClass="text-area" wrapText="true" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
-            
-            <Label style="-fx-font-weight: bold;" text="Special Requests / Notes" />
-            <TextArea fx:id="special_requests_area" prefHeight="150.0" prefWidth="200.0" promptText="Enter any dietary restrictions, allergies, or special needs here..." wrapText="true" />
-         </children>
-      </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

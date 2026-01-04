@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
 
 public class BookingNavigationController implements Initializable {
 
@@ -21,6 +23,8 @@ public class BookingNavigationController implements Initializable {
     public Label status_lbl;
     @FXML
     public Button next_btn;
+    @FXML
+    public ProgressBar nav_progress;
 
     private BookingData bookingData;
 
@@ -113,7 +117,7 @@ public class BookingNavigationController implements Initializable {
                     "Booking created successfully!\n\n"
                     + "Client: " + bookingData.getClientName() + "\n"
                     + "Package: " + bookingData.getSelectedPackageName() + "\n"
-                    + "Total: PHP " + String.format("%,.2f", (double) bookingData.calculateTotalPrice()));
+                    + "Total: ₱" + String.format("%,.2f", (double) bookingData.calculateTotalPrice()));
 
             // Reset and go back to bookings list
             Model.getInstance().getUserViewFactory().resetBookingWizard();
@@ -134,27 +138,46 @@ public class BookingNavigationController implements Initializable {
     private void updateUI(int currentStep) {
         updateLabel(currentStep);
         updateButtons(currentStep);
+        updateProgressBar(currentStep);
     }
 
     private void updateLabel(int currentStep) {
         status_lbl.setText("Step " + currentStep + " of 6");
     }
 
+    private void updateProgressBar(int currentStep) {
+        if (nav_progress != null) {
+            nav_progress.setProgress(currentStep / 6.0);
+        }
+    }
+
     private void updateButtons(int currentStep) {
-        // Update back button
-        if (currentStep == 1) {
-            back_btn.setText("Cancel");
-        } else {
-            back_btn.setText("Back");
+        // Update back button text via its graphic label
+        HBox backGraphic = (HBox) back_btn.getGraphic();
+        if (backGraphic != null && backGraphic.getChildren().size() > 1) {
+            Label backLabel = (Label) backGraphic.getChildren().get(1);
+            if (currentStep == 1) {
+                backLabel.setText("Cancel");
+            } else {
+                backLabel.setText("Back");
+            }
         }
 
-        // Update next button
-        if (currentStep == 6) {
-            next_btn.setText("Submit Booking");
-            next_btn.setStyle("-fx-background-color: #28a745; -fx-text-fill: white;");
-        } else {
-            next_btn.setText("Next");
-            next_btn.setStyle("");
+        // Update next button text and style via its graphic label
+        HBox nextGraphic = (HBox) next_btn.getGraphic();
+        if (nextGraphic != null && nextGraphic.getChildren().size() > 0) {
+            Label nextLabel = (Label) nextGraphic.getChildren().get(0);
+            if (currentStep == 6) {
+                nextLabel.setText("Confirm Booking");
+                next_btn.getStyleClass().removeAll("nav-btn-next");
+                next_btn.getStyleClass().add("nav-btn-submit");
+            } else {
+                nextLabel.setText("Next");
+                next_btn.getStyleClass().removeAll("nav-btn-submit");
+                if (!next_btn.getStyleClass().contains("nav-btn-next")) {
+                    next_btn.getStyleClass().add("nav-btn-next");
+                }
+            }
         }
     }
 }

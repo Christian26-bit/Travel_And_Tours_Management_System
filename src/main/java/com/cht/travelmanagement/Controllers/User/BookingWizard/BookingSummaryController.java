@@ -9,8 +9,7 @@ import com.cht.travelmanagement.Models.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.text.Text;
+import javafx.scene.shape.Circle;
 
 public class BookingSummaryController implements Initializable {
 
@@ -27,11 +26,11 @@ public class BookingSummaryController implements Initializable {
     @FXML
     private Label total_cost_lbl;
     @FXML
-    private Text cost_hint_txt;
+    private Label cost_hint_txt;
     @FXML
     private Label completion_count_lbl;
     @FXML
-    private ProgressBar progress_bar;
+    private Circle progress_ring;
 
     private BookingData bookingData;
 
@@ -94,10 +93,12 @@ public class BookingSummaryController implements Initializable {
         if (customer_lbl != null) {
             if (!bookingData.getClientName().isEmpty()) {
                 customer_lbl.setText(bookingData.getClientName() + " (" + bookingData.getPaxCount() + " pax)");
-                customer_lbl.setStyle("-fx-text-fill: #27ae60;");
+                customer_lbl.getStyleClass().removeAll("summary-item-value");
+                customer_lbl.getStyleClass().add("summary-item-value-complete");
             } else {
                 customer_lbl.setText("Not set");
-                customer_lbl.setStyle("-fx-text-fill: #7F8C8D;");
+                customer_lbl.getStyleClass().removeAll("summary-item-value-complete");
+                customer_lbl.getStyleClass().add("summary-item-value");
             }
         }
     }
@@ -106,10 +107,12 @@ public class BookingSummaryController implements Initializable {
         if (package_lbl != null) {
             if (bookingData.getSelectedPackageId() > 0) {
                 package_lbl.setText(bookingData.getSelectedPackageName());
-                package_lbl.setStyle("-fx-text-fill: #27ae60;");
+                package_lbl.getStyleClass().removeAll("summary-item-value");
+                package_lbl.getStyleClass().add("summary-item-value-complete");
             } else {
                 package_lbl.setText("Not selected");
-                package_lbl.setStyle("-fx-text-fill: #7F8C8D;");
+                package_lbl.getStyleClass().removeAll("summary-item-value-complete");
+                package_lbl.getStyleClass().add("summary-item-value");
             }
         }
     }
@@ -118,10 +121,12 @@ public class BookingSummaryController implements Initializable {
         if (hotel_lbl != null) {
             if (bookingData.getSelectedHotelId() > 0) {
                 hotel_lbl.setText(bookingData.getSelectedHotelName());
-                hotel_lbl.setStyle("-fx-text-fill: #27ae60;");
+                hotel_lbl.getStyleClass().removeAll("summary-item-value");
+                hotel_lbl.getStyleClass().add("summary-item-value-complete");
             } else {
                 hotel_lbl.setText("Not selected");
-                hotel_lbl.setStyle("-fx-text-fill: #7F8C8D;");
+                hotel_lbl.getStyleClass().removeAll("summary-item-value-complete");
+                hotel_lbl.getStyleClass().add("summary-item-value");
             }
         }
     }
@@ -130,10 +135,12 @@ public class BookingSummaryController implements Initializable {
         if (transport_lbl != null) {
             if (bookingData.getSelectedVehicleId() > 0) {
                 transport_lbl.setText(bookingData.getVehicleType());
-                transport_lbl.setStyle("-fx-text-fill: #27ae60;");
+                transport_lbl.getStyleClass().removeAll("summary-item-value");
+                transport_lbl.getStyleClass().add("summary-item-value-complete");
             } else {
                 transport_lbl.setText("Not selected");
-                transport_lbl.setStyle("-fx-text-fill: #7F8C8D;");
+                transport_lbl.getStyleClass().removeAll("summary-item-value-complete");
+                transport_lbl.getStyleClass().add("summary-item-value");
             }
         }
     }
@@ -141,7 +148,7 @@ public class BookingSummaryController implements Initializable {
     private void updateTotalCost() {
         if (total_cost_lbl != null) {
             int total = bookingData.calculateTotalPrice();
-            total_cost_lbl.setText("PHP " + String.format("%,d", total));
+            total_cost_lbl.setText("₱" + String.format("%,d", total));
 
             if (cost_hint_txt != null) {
                 if (total > 0) {
@@ -157,20 +164,20 @@ public class BookingSummaryController implements Initializable {
         StringBuilder sb = new StringBuilder();
 
         if (bookingData.getPackagePrice() > 0) {
-            sb.append("Package: PHP ").append(String.format("%,d", bookingData.getPackagePrice() * bookingData.getPaxCount())).append("\n");
+            sb.append("Package: ₱").append(String.format("%,d", bookingData.getPackagePrice() * bookingData.getPaxCount())).append("\n");
         }
 
         int addons = bookingData.getAddonsTotal();
         if (addons > 0) {
-            sb.append("Add-ons: PHP ").append(String.format("%,d", addons)).append("\n");
+            sb.append("Add-ons: ₱").append(String.format("%,d", addons)).append("\n");
         }
 
         if (bookingData.getHotelPrice() > 0) {
-            sb.append("Hotel: PHP ").append(String.format("%,d", bookingData.getHotelPrice())).append("\n");
+            sb.append("Hotel: ₱").append(String.format("%,d", bookingData.getHotelPrice())).append("\n");
         }
 
         if (bookingData.getVehiclePrice() > 0) {
-            sb.append("Transport: PHP ").append(String.format("%,d", bookingData.getVehiclePrice()));
+            sb.append("Transport: ₱").append(String.format("%,d", bookingData.getVehiclePrice()));
         }
 
         return sb.length() > 0 ? sb.toString().trim() : "Add items to see total";
@@ -191,17 +198,17 @@ public class BookingSummaryController implements Initializable {
             completion_count_lbl.setText(completedCount + "/" + totalSteps);
         }
 
-        if (progress_bar != null) {
-            progress_bar.setProgress(progress);
-
-            // Change color based on progress
-            if (progress >= 1.0) {
-                progress_bar.setStyle("-fx-accent: #28a745;"); // Green when complete
-            } else if (progress >= 0.5) {
-                progress_bar.setStyle("-fx-accent: #ffc107;"); // Yellow when halfway
-            } else {
-                progress_bar.setStyle("-fx-accent: #007bff;"); // Blue otherwise
-            }
+        // Update progress ring (stroke-dasharray based on progress)
+        if (progress_ring != null) {
+            double circumference = 2 * Math.PI * 35; // radius = 35
+            double dashLength = circumference * progress;
+            double gapLength = circumference - dashLength;
+            progress_ring.setStyle(String.format(
+                    "-fx-fill: transparent; -fx-stroke: %s; -fx-stroke-width: 6; -fx-stroke-dash-array: %.2f %.2f; -fx-stroke-line-cap: round; -fx-rotate: -90;",
+                    progress >= 1.0 ? "#05CD99" : "#4318FF",
+                    dashLength,
+                    gapLength
+            ));
         }
     }
 }

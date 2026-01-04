@@ -8,23 +8,23 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane stylesheets="@../../../Styles/User/BookingStep2.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep2Contoller">
+<AnchorPane stylesheets="@../../../Styles/User/BookingStep2.css, @../../../Styles/User/BookingWizard.css" style="-fx-background-color: #F4F7FE;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep2Contoller">
    <children>
-      <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="25.0" left="30.0" right="30.0" top="25.0" />
          </padding>
          <children>
             <!-- Header -->
-            <VBox spacing="5.0">
+            <VBox spacing="8.0">
                <children>
-                  <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Select Tour Package" />
-                  <Label style="-fx-font-size: 14px; -fx-text-fill: #7F8C8D;" text="Choose a package that best fits your customer's preferences" />
+                  <Label styleClass="header-title" text="Select Tour Package" />
+                  <Label styleClass="header-subtitle" text="Choose a package that best fits your customer's preferences" />
                </children>
             </VBox>
             
             <!-- Package Grid in ScrollPane -->
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
                <content>
                   <GridPane fx:id="package_grid" alignment="TOP_CENTER" hgap="20.0" vgap="20.0">
                      <!-- Packages will be loaded dynamically -->
