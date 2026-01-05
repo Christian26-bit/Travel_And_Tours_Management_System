@@ -1,5 +1,7 @@
 package com.cht.travelmanagement.Models;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,18 +20,44 @@ public class DatabaseDriver {
     private static String dbPass;
 
     static {
-        try (InputStream input = DatabaseDriver.class.getClassLoader().getResourceAsStream("config.properties")) {
-            if (input == null) {
-                logger.log(Level.SEVERE, "Sorry, unable to find config.properties");
+        loadConfiguration();
+    }
+
+    private static void loadConfiguration() {
+        InputStream input = null;
+        try {
+            File externalConfig = new File("config.properties");
+            
+            if (externalConfig.exists()) {
+                logger.info("Loading configuration from EXTERNAL file: " + externalConfig.getAbsolutePath());
+                input = new FileInputStream(externalConfig);
             } else {
-                properties.load(input);
-                dbDriver = properties.getProperty("db.driver");
-                dbUrl = properties.getProperty("db.url");
-                dbUser = properties.getProperty("db.user");
-                dbPass = properties.getProperty("db.password");
+                
+                logger.info("External config not found. Loading INTERNAL configuration.");
+                input = DatabaseDriver.class.getClassLoader().getResourceAsStream("config.properties");
             }
+
+            if (input == null) {
+                logger.log(Level.SEVERE, "Sorry, unable to find config.properties anywhere.");
+                return;
+            }
+            
+            properties.load(input);
+            dbDriver = properties.getProperty("db.driver");
+            dbUrl = properties.getProperty("db.url");
+            dbUser = properties.getProperty("db.user");
+            dbPass = properties.getProperty("db.password");
+
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error loading configuration", ex);
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -39,11 +67,9 @@ public class DatabaseDriver {
         Connection connection = null;
         try {
             Class.forName(dbDriver);
+            connection = DriverManager.getConnection(dbUrl, dbUser, dbPass);
         } catch (ClassNotFoundException e) {
             logger.log(Level.SEVERE, "Database Driver not found: " + e.getMessage());
-        }
-        try {
-            connection = DriverManager.getConnection(dbUrl, dbUser, dbPass);
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Connection Failed: " + e.getMessage());
             throw e;
