@@ -6,10 +6,16 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<ScrollPane fitToWidth="true" stylesheets="@../../Styles/Admin/AdminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.Admin.AdminDashboardController">
+<ScrollPane fitToWidth="true" stylesheets="@../../Styles/Admin/AdminDashboard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.Admin.AdminDashboardController">
     <content>
         <VBox spacing="25.0" styleClass="dashboard-container">
             <padding>
@@ -40,7 +46,7 @@
                         <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,sales-card" HBox.hgrow="ALWAYS">
                             <children>
                                 <FontAwesomeIconView glyphName="MONEY" size="36" styleClass="stat-icon" />
-                                <Label styleClass="stat-value" fx:id="totalSalesLabel" text="₱0.00" />
+                                <Label fx:id="totalSalesLabel" styleClass="stat-value" text="₱0.00" />
                                 <Label styleClass="stat-label" text="Total Sales" />
                             </children>
                         </VBox>
@@ -49,7 +55,7 @@
                         <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,bookings-card" HBox.hgrow="ALWAYS">
                             <children>
                                 <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" size="36" styleClass="stat-icon" />
-                                <Label styleClass="stat-value" fx:id="totalBookingsLabel" text="0" />
+                                <Label fx:id="totalBookingsLabel" styleClass="stat-value" text="0" />
                                 <Label styleClass="stat-label" text="Total Bookings" />
                             </children>
                         </VBox>
@@ -58,7 +64,7 @@
                         <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,packages-card" HBox.hgrow="ALWAYS">
                             <children>
                                 <FontAwesomeIconView glyphName="SUITCASE" size="36" styleClass="stat-icon" />
-                                <Label styleClass="stat-value" fx:id="activePackagesLabel" text="0" />
+                                <Label fx:id="activePackagesLabel" styleClass="stat-value" text="0" />
                                 <Label styleClass="stat-label" text="Active Packages" />
                             </children>
                         </VBox>
@@ -67,7 +73,7 @@
                         <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,employees-card" HBox.hgrow="ALWAYS">
                             <children>
                                 <FontAwesomeIconView glyphName="USERS" size="36" styleClass="stat-icon" />
-                                <Label styleClass="stat-value" fx:id="totalEmployeesLabel" text="0" />
+                                <Label fx:id="totalEmployeesLabel" styleClass="stat-value" text="0" />
                                 <Label styleClass="stat-label" text="Active Employees" />
                             </children>
                         </VBox>
@@ -99,10 +105,10 @@
                                 </Label>
                                 <BarChart fx:id="employeePerformanceChart" prefHeight="300.0">
                                     <xAxis>
-                                        <CategoryAxis label="Employee" fx:id="employeeAxis" />
+                                        <CategoryAxis fx:id="employeeAxis" label="Employee" />
                                     </xAxis>
                                     <yAxis>
-                                        <NumberAxis label="Bookings" fx:id="bookingsAxis" />
+                                        <NumberAxis fx:id="bookingsAxis" label="Bookings" />
                                     </yAxis>
                                 </BarChart>
                             </children>
@@ -132,6 +138,9 @@
                                     <placeholder>
                                         <Label text="No recent bookings" />
                                     </placeholder>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                                 </TableView>
                             </children>
                         </VBox>
@@ -154,6 +163,9 @@
                                     <placeholder>
                                         <Label text="No data available" />
                                     </placeholder>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                                 </TableView>
                             </children>
                         </VBox>
