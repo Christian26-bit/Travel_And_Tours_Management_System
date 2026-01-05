@@ -254,4 +254,8 @@ public class Model {
         AccommodationRepository accommodationRepository = new AccommodationRepositoryImpl();
         return accommodationRepository.getAllAccommodations();
     }
+    
+    /**
+     * 
+     */
 }

@@ -11,6 +11,7 @@ import com.cht.travelmanagement.Models.Client;
 import com.cht.travelmanagement.Models.DatabaseDriver;
 import com.cht.travelmanagement.Models.Employee;
 import com.cht.travelmanagement.Models.Model;
+import com.cht.travelmanagement.Models.PasswordUtils;
 import com.cht.travelmanagement.Models.Repository.EmployeeRepository;
 import com.cht.travelmanagement.View.AccountType;
 
@@ -28,7 +29,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         }
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(verifyLogin);) {
             preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(2, PasswordUtils.hashPassword(password));
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
@@ -191,7 +192,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
             preparedStatement.setString(1, employee.getName());
             preparedStatement.setString(2, employee.getEmail());
-            preparedStatement.setString(3, hashPassword(employee.getPassword()));
+            
+            String hashedPassword = PasswordUtils.hashPassword(employee.getPassword());
+            preparedStatement.setString(3, hashedPassword);
             preparedStatement.setString(4, employee.getContactNumber());
             preparedStatement.setBoolean(5, employee.isManager());
             preparedStatement.setBoolean(6, employee.isActive());
