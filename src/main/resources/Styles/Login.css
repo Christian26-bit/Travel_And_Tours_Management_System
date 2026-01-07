@@ -18,7 +18,7 @@
 
 /* Background container */
 .login-background {
-    -fx-background-image: url("../Images/login-background.jpg");
+    -fx-background-image: url("../Images/login-background.png");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
@@ -26,7 +26,7 @@
 
 /* Main login card */
 .login-container {
-    -fx-background-color: rgba(255, 255, 255, 0.20);
+    -fx-background-color: white;
     -fx-background-radius: 22;
     -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.18), 40, 0.2, 0, 12);
     -fx-padding: 35 40 35 40;
