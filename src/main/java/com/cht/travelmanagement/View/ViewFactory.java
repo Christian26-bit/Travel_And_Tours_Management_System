@@ -2,17 +2,17 @@ package com.cht.travelmanagement.View;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class ViewFactory {
-    private AccountType loggedInAccountType;
 
+    private AccountType loggedInAccountType;
 
     public ViewFactory() {
         this.loggedInAccountType = AccountType.USER;
     }
+
     public void showLoginWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Login-view.fxml"));
         createStage(loader);
@@ -35,6 +35,7 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/logo-noText.png"))));
         stage.setMaximized(true);
         stage.setTitle("CHT Travel & Tour Management System");
         stage.show();
