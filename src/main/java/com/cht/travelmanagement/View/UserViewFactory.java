@@ -3,6 +3,7 @@ package com.cht.travelmanagement.View;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.cht.travelmanagement.Controllers.User.BookingsController;
 import com.cht.travelmanagement.Controllers.User.DashboardController;
 import com.cht.travelmanagement.Controllers.User.UserController;
 import com.cht.travelmanagement.Models.BookingData;
@@ -23,6 +24,7 @@ public class UserViewFactory extends ViewFactory {
     private DashboardController dashboardController; // Capture the controller
     private BorderPane newBookingView;
     private Parent bookingListView;
+    private BookingsController bookingsController;
 
     private Parent customerListView;
     private Parent tourPackageListView;
@@ -90,6 +92,14 @@ public class UserViewFactory extends ViewFactory {
 
     public DashboardController getDashboardController() {
         return dashboardController;
+    }
+
+    public void setBookingsController(BookingsController controller) {
+        this.bookingsController = controller;
+    }
+
+    public BookingsController getBookingsController() {
+        return bookingsController;
     }
 
     public Parent getUserDashboardPane() {

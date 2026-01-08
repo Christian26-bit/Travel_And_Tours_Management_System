@@ -80,7 +80,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
 
     @Override
     public TourPackage getTourPackageById(int packageId) {
-        String query = "SELECT * FROM package WHERE PackageId = ?";
+        String query = "SELECT * FROM package WHERE PackageID = ?";
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, packageId);
@@ -125,7 +125,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
     @Override
     public boolean updateTourPackage(TourPackage tourPackage) {
         String query = "UPDATE package SET Name = ?, Description = ?, Destination = ?, Duration = ?, "
-                + "MaxPax = ?, Inclusions = ?, Price = ?, IsActive = ?, ImagePath = ? WHERE PackageId = ?";
+                + "MaxPax = ?, Inclusions = ?, Price = ?, IsActive = ?, ImagePath = ? WHERE PackageID = ?";
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, tourPackage.getPackageName());
@@ -163,7 +163,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
             }
 
             // No bookings, safe to delete
-            String deleteQuery = "DELETE FROM package WHERE PackageId = ?";
+            String deleteQuery = "DELETE FROM package WHERE PackageID = ?";
             try (PreparedStatement deleteStmt = connection.prepareStatement(deleteQuery)) {
                 deleteStmt.setInt(1, packageId);
                 int rowsAffected = deleteStmt.executeUpdate();
@@ -178,7 +178,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
 
     @Override
     public boolean togglePackageStatus(int packageId, boolean isActive) {
-        String query = "UPDATE package SET IsActive = ? WHERE PackageId = ?";
+        String query = "UPDATE package SET IsActive = ? WHERE PackageID = ?";
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setBoolean(1, isActive);
@@ -209,7 +209,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
     }
 
     private TourPackage mapResultSetToTourPackage(ResultSet resultSet) throws SQLException {
-        int packageId = resultSet.getInt("PackageId");
+        int packageId = resultSet.getInt("PackageID");
         String packageName = resultSet.getString("Name");
         String description = resultSet.getString("Description");
         String destination = resultSet.getString("Destination");
@@ -218,7 +218,7 @@ public class TourPackageRepositoryImpl implements TourPackageRepository {
         String inclusions = resultSet.getString("Inclusions");
         int price = resultSet.getInt("Price");
         boolean isActive = resultSet.getBoolean("IsActive");
-        int createdBy = resultSet.getInt("CreatedByEmployeeId");
+        int createdBy = resultSet.getInt("CreatedByEmployeeID");
         String imagePath = resultSet.getString("ImagePath");
 
         return new TourPackage(packageId, packageName, description, destination,

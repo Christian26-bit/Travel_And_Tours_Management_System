@@ -14,6 +14,7 @@ public class AdminViewFactory extends ViewFactory {
     private Parent adminDashboardView;
     private AdminDashboardController dashboardController;
     private Parent packageManagementView;
+    private com.cht.travelmanagement.Controllers.Admin.PackageManagementController packageManagementController;
     private Parent employeeManagementView;
 
     private final ObjectProperty<AdminMenuOption> adminSelectedMenuItem;
@@ -25,6 +26,14 @@ public class AdminViewFactory extends ViewFactory {
 
     public ObjectProperty<AdminMenuOption> getAdminSelectedMenuItem() {
         return adminSelectedMenuItem;
+    }
+
+    public void setPackageManagementController(com.cht.travelmanagement.Controllers.Admin.PackageManagementController controller) {
+        this.packageManagementController = controller;
+    }
+
+    public com.cht.travelmanagement.Controllers.Admin.PackageManagementController getPackageManagementController() {
+        return packageManagementController;
     }
 
     public void showAdminWindow() {

@@ -27,18 +27,21 @@ public class BookingRepositoryImpl implements BookingRepository {
     @Override
     public ObservableList<Booking> getRecentBookings() {
         ObservableList<Booking> recentBookings = FXCollections.observableArrayList();
-        String query = "SELECT b.BookingID AS TripID, c.name AS CustomerName, p.Name AS PackageName, p.Destination, MIN(t.StartDate) AS StartDate, "
-                + "CASE WHEN MAX(t.EndDate) < CURRENT_DATE THEN 'Completed' "
-                + "WHEN MIN(t.StartDate) <= CURRENT_DATE AND MAX(t.EndDate) >= CURRENT_DATE THEN 'Ongoing' "
-                + "ELSE 'Upcoming' END AS Status "
+        String query = "SELECT b.BookingID AS TripID, c.name AS CustomerName, p.Name AS PackageName, p.Destination, "
+                + "COALESCE(MIN(t.StartDate), b.BookingDate) AS StartDate, "
+                + "CASE "
+                + "  WHEN b.Status = 'cancelled' THEN 'Cancelled' "
+                + "  WHEN b.Status = 'pending' THEN 'Pending' "
+                + "  WHEN MAX(t.EndDate) < CURRENT_DATE THEN 'Completed' "
+                + "  WHEN MIN(t.StartDate) <= CURRENT_DATE AND MAX(t.EndDate) >= CURRENT_DATE THEN 'Ongoing' "
+                + "  ELSE 'Upcoming' END AS Status "
                 + "FROM booking b "
                 + "JOIN client c ON b.ClientID = c.clientId "
                 + "JOIN package p ON b.PackageID = p.PackageID "
-                + "JOIN packagetrips pt ON p.PackageID = pt.PackageID "
-                + "JOIN trip t ON pt.TripID = t.TripID "
-                + "WHERE b.Status = 'confirmed' "
-                + "GROUP BY b.BookingID, c.name, p.Name, p.Destination "
-                + "ORDER BY StartDate ASC "
+                + "LEFT JOIN packagetrips pt ON p.PackageID = pt.PackageID "
+                + "LEFT JOIN trip t ON pt.TripID = t.TripID "
+                + "GROUP BY b.BookingID, c.name, p.Name, p.Destination, b.BookingDate, b.Status "
+                + "ORDER BY b.BookingDate DESC "
                 + "LIMIT 10;";
         return getBookings(recentBookings, query);
 
@@ -47,17 +50,20 @@ public class BookingRepositoryImpl implements BookingRepository {
     @Override
     public ObservableList<Booking> getAllBookings() {
         ObservableList<Booking> allBookings = FXCollections.observableArrayList();
-        String query = "SELECT b.BookingID AS TripID, c.name AS CustomerName, p.Name AS PackageName, p.Destination, MIN(t.StartDate) AS StartDate, "
-                + "CASE WHEN MAX(t.EndDate) < CURRENT_DATE THEN 'Completed' "
-                + "WHEN MIN(t.StartDate) <= CURRENT_DATE AND MAX(t.EndDate) >= CURRENT_DATE THEN 'Ongoing' "
-                + "ELSE 'Upcoming' END AS Status "
+        String query = "SELECT b.BookingID AS TripID, c.name AS CustomerName, p.Name AS PackageName, p.Destination, "
+                + "COALESCE(MIN(t.StartDate), b.BookingDate) AS StartDate, "
+                + "CASE "
+                + "  WHEN b.Status = 'cancelled' THEN 'Cancelled' "
+                + "  WHEN b.Status = 'pending' THEN 'Pending' "
+                + "  WHEN MAX(t.EndDate) < CURRENT_DATE THEN 'Completed' "
+                + "  WHEN MIN(t.StartDate) <= CURRENT_DATE AND MAX(t.EndDate) >= CURRENT_DATE THEN 'Ongoing' "
+                + "  ELSE 'Upcoming' END AS Status "
                 + "FROM booking b "
                 + "JOIN client c ON b.ClientID = c.clientId "
                 + "JOIN package p ON b.PackageID = p.PackageID "
-                + "JOIN packagetrips pt ON p.PackageID = pt.PackageID "
-                + "JOIN trip t ON pt.TripID = t.TripID "
-                + "WHERE b.Status = 'confirmed' "
-                + "GROUP BY b.BookingID, c.name, p.Name, p.Destination "
+                + "LEFT JOIN packagetrips pt ON p.PackageID = pt.PackageID "
+                + "LEFT JOIN trip t ON pt.TripID = t.TripID "
+                + "GROUP BY b.BookingID, c.name, p.Name, p.Destination, b.BookingDate, b.Status "
                 + "ORDER BY StartDate ASC;";
         return getBookings(allBookings, query);
     }
@@ -212,7 +218,7 @@ public class BookingRepositoryImpl implements BookingRepository {
             preparedStatement.setInt(2, bookingData.getClientId());
             preparedStatement.setInt(3, bookingData.getSelectedPackageId());
             preparedStatement.setDate(4, java.sql.Date.valueOf(bookingData.getBookingDate()));
-            preparedStatement.setString(5, "confirmed");
+            preparedStatement.setString(5, "pending");
             preparedStatement.setInt(6, bookingData.getPaxCount());
 
             int rowsAffected = preparedStatement.executeUpdate();

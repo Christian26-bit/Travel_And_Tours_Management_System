@@ -15,7 +15,13 @@ public class UserController implements Initializable {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().addListener((observable, oldVal, newVal) -> {
             switch (newVal) {
                 case NEW_BOOKING -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getNewBookingView());
-                case BOOKINGS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getBookingListView());
+                case BOOKINGS -> {
+                    user_parent.setCenter(Model.getInstance().getUserViewFactory().getBookingListView());
+                    var controller = Model.getInstance().getUserViewFactory().getBookingsController();
+                    if (controller != null) {
+                        controller.refresh();
+                    }
+                }
                 case CLIENTS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getClientListView());
                 case TOUR_PACKAGES ->  user_parent.setCenter(Model.getInstance().getUserViewFactory().getTourPackageListView());
                 case TRIPS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getTripsListView());

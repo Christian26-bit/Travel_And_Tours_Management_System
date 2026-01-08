@@ -173,6 +173,13 @@ public class PackageManagementController implements Initializable {
         loadPackages();
         setupEventHandlers();
         setupEntitiesTables();
+        
+        // Register this controller with the View Factory if possible
+        Model.getInstance().getAdminViewFactory().setPackageManagementController(this);
+    }
+
+    public void refresh() {
+        loadPackages();
     }
 
     private void setupTable() {

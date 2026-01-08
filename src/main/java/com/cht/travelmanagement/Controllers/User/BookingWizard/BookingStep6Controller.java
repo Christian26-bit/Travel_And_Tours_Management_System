@@ -129,6 +129,12 @@ public class BookingStep6Controller implements Initializable {
                     + "Package: " + bookingData.getSelectedPackageName() + "\n"
                     + "Total: PHP " + String.format("%,.2f", (double) bookingData.calculateTotalPrice()));
 
+            // Refresh the bookings list if it exists
+            var bookingsCtrl = Model.getInstance().getUserViewFactory().getBookingsController();
+            if (bookingsCtrl != null) {
+                bookingsCtrl.refresh();
+            }
+
             // Reset for next booking
             Model.getInstance().getUserViewFactory().resetBookingWizard();
 

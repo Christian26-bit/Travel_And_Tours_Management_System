@@ -2,8 +2,11 @@ package com.cht.travelmanagement.Models;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 import java.util.Scanner;
@@ -17,24 +20,61 @@ public class DatabaseInitializer {
             return;
         }
 
-        System.out.println("Found schema.sql! initializing database...");
+        System.out.println("Found schema.sql! checking database...");
 
         Properties props = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+        InputStream input = null;
+        try {
+            File externalConfig = new File("config.properties");
+            if (externalConfig.exists()) {
+                input = new FileInputStream(externalConfig);
+            } else {
+                input = DatabaseInitializer.class.getClassLoader().getResourceAsStream("config.properties");
+            }
+
+            if (input == null) {
+                System.out.println("Could not find config.properties. Cannot init DB.");
+                return;
+            }
             props.load(input);
         } catch (Exception e) {
-            System.out.println("Could not read config.properties. Cannot init DB.");
+            System.out.println("Error loading config: " + e.getMessage());
             return;
+        } finally {
+            if (input != null) {
+                try { input.close(); } catch (Exception e) {}
+            }
         }
 
         String dbUrl = props.getProperty("db.url");
         String user = props.getProperty("db.user");
         String pass = props.getProperty("db.password");
 
+        if (dbUrl == null || dbUrl.isEmpty()) return;
+
         String serverUrl = dbUrl.substring(0, dbUrl.lastIndexOf("/"));
+        String dbName = dbUrl.substring(dbUrl.lastIndexOf("/") + 1);
+        if (dbName.contains("?")) {
+            dbName = dbName.substring(0, dbName.indexOf("?"));
+        }
 
-        try (Connection conn = DriverManager.getConnection(serverUrl, user, pass); Statement stmt = conn.createStatement()) {
+        try (Connection conn = DriverManager.getConnection(serverUrl + "?useSSL=false&allowPublicKeyRetrieval=true", user, pass); 
+             Statement stmt = conn.createStatement()) {
 
+            // Ensure DB exists
+            stmt.execute("CREATE DATABASE IF NOT EXISTS " + dbName);
+            stmt.execute("USE " + dbName);
+
+            // Check if tables exist
+            DatabaseMetaData dbm = conn.getMetaData();
+            try (ResultSet rs = dbm.getTables(dbName, null, "employee", null)) {
+                if (rs.next()) {
+                    System.out.println("Database already initialized (tables found). Skipping script execution.");
+                    return;
+                }
+            }
+
+            System.out.println("Initializing database tables...");
             try (Scanner scanner = new Scanner(scriptFile)) {
 
                 scanner.useDelimiter(";");

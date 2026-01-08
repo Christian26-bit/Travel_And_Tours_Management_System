@@ -86,6 +86,13 @@ public class BookingsController implements Initializable {
         loadAllBookings();
         setupSearch();
         setupActions();
+
+        // Register this controller with the View Factory
+        Model.getInstance().getUserViewFactory().setBookingsController(this);
+    }
+
+    public void refresh() {
+        loadAllBookings();
     }
 
     private void setupTable() {
