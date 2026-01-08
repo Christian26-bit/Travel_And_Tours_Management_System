@@ -43,6 +43,45 @@ import javafx.stage.FileChooser;
 
 public class PackageManagementController implements Initializable {
 
+    // Activities, Accommodations, Vehicles Controls
+    @FXML
+    public TableView<String> activitiesTable;
+    @FXML
+    public TableColumn<String, String> activityNameColumn;
+    @FXML
+    public TableColumn<String, Void> activityActionColumn;
+    @FXML
+    public Button addActivityBtn;
+    @FXML
+    public Button removeActivityBtn;
+
+    @FXML
+    public TableView<String> accommodationsTable;
+    @FXML
+    public TableColumn<String, String> accommodationNameColumn;
+    @FXML
+    public TableColumn<String, Void> accommodationActionColumn;
+    @FXML
+    public Button addAccommodationBtn;
+    @FXML
+    public Button removeAccommodationBtn;
+
+    @FXML
+    public TableView<String> vehiclesTable;
+    @FXML
+    public TableColumn<String, String> vehicleNameColumn;
+    @FXML
+    public TableColumn<String, Void> vehicleActionColumn;
+    @FXML
+    public Button addVehicleBtn;
+    @FXML
+    public Button removeVehicleBtn;
+
+    // ObservableLists for entities
+    private ObservableList<String> activities = javafx.collections.FXCollections.observableArrayList();
+    private ObservableList<String> accommodations = javafx.collections.FXCollections.observableArrayList();
+    private ObservableList<String> vehicles = javafx.collections.FXCollections.observableArrayList();
+
     // Header Controls
     @FXML
     public Button addNewBtn;
@@ -133,6 +172,7 @@ public class PackageManagementController implements Initializable {
         setupImageUpload();
         loadPackages();
         setupEventHandlers();
+        setupEntitiesTables();
     }
 
     private void setupTable() {
@@ -355,6 +395,65 @@ public class PackageManagementController implements Initializable {
 
         // Search on enter key
         searchField.setOnAction(event -> searchPackages());
+
+        addActivityBtn.setOnAction(e -> addActivity());
+        removeActivityBtn.setOnAction(e -> removeSelectedActivity());
+        addAccommodationBtn.setOnAction(e -> addAccommodation());
+        removeAccommodationBtn.setOnAction(e -> removeSelectedAccommodation());
+        addVehicleBtn.setOnAction(e -> addVehicle());
+        removeVehicleBtn.setOnAction(e -> removeSelectedVehicle());
+    }
+
+    private void setupEntitiesTables() {
+        activitiesTable.setItems(activities);
+        activityNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+        accommodationsTable.setItems(accommodations);
+        accommodationNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+        vehiclesTable.setItems(vehicles);
+        vehicleNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+    }
+
+    private void addActivity() {
+        // For demo, just prompt for activity name
+        String name = AlertUtility.promptInput("Add Activity", "Enter activity name:", "");
+        if (name != null && !name.trim().isEmpty()) {
+            activities.add(name.trim());
+        }
+    }
+
+    private void removeSelectedActivity() {
+        String selected = activitiesTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            activities.remove(selected);
+        }
+    }
+
+    private void addAccommodation() {
+        String name = AlertUtility.promptInput("Add Accommodation", "Enter accommodation name:", "");
+        if (name != null && !name.trim().isEmpty()) {
+            accommodations.add(name.trim());
+        }
+    }
+
+    private void removeSelectedAccommodation() {
+        String selected = accommodationsTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            accommodations.remove(selected);
+        }
+    }
+
+    private void addVehicle() {
+        String name = AlertUtility.promptInput("Add Vehicle", "Enter vehicle name:", "");
+        if (name != null && !name.trim().isEmpty()) {
+            vehicles.add(name.trim());
+        }
+    }
+
+    private void removeSelectedVehicle() {
+        String selected = vehiclesTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            vehicles.remove(selected);
+        }
     }
 
     private void loadPackages() {
@@ -430,6 +529,8 @@ public class PackageManagementController implements Initializable {
                 imagePath
         );
 
+        // TODO: Save activities, accommodations, vehicles with the package
+        // This requires repository/model support for linking these entities
         boolean success;
         if (isEditMode) {
             success = tourPackageRepository.updateTourPackage(pkg);

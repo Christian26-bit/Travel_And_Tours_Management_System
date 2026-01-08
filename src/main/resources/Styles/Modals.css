@@ -1,0 +1,294 @@
+/* ============================================
+   MODALS, POPUPS & VALIDATION STYLES
+   Travel Management System - Modern Theme
+   ============================================ */
+
+/* ============ VALIDATION ERRORS ============ */
+
+/* Error styling for input fields */
+.text-field-error, .text-area-error, .choice-box-error, .combo-box-error {
+    -fx-border-color: #e74c3c !important;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.1), 5, 0, 0, 0);
+}
+
+.text-field-error:focused, .text-area-error:focused, .choice-box-error:focused {
+    -fx-border-color: #e74c3c !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.2), 8, 0, 0, 0);
+}
+
+/* Error label text below inputs */
+.error-label {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-graphic-text-gap: 5px;
+}
+
+.error-label .glyph-icon {
+    -fx-fill: #e74c3c;
+    -fx-font-size: 11px;
+}
+
+/* Validation Tooltip */
+.validation-tooltip {
+    -fx-background-color: #fdeaea;
+    -fx-text-fill: #c0392b;
+    -fx-background-radius: 5;
+    -fx-border-color: #e74c3c;
+    -fx-border-radius: 5;
+    -fx-padding: 5 8;
+    -fx-font-size: 11px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* ============ TOAST NOTIFICATIONS ============ */
+
+.toast-container {
+    -fx-background-radius: 8;
+    -fx-padding: 12 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 2);
+    -fx-min-width: 300px;
+}
+
+/* Success Toast */
+.toast-success {
+    -fx-background-color: #d4edda;
+    -fx-border-color: #c3e6cb;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.toast-success .toast-title {
+    -fx-text-fill: #155724;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.toast-success .toast-message {
+    -fx-text-fill: #155724;
+    -fx-font-size: 12px;
+}
+
+.toast-success .glyph-icon {
+    -fx-fill: #27ae60;
+}
+
+/* Error Toast */
+.toast-error {
+    -fx-background-color: #f8d7da;
+    -fx-border-color: #f5c6cb;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.toast-error .toast-title {
+    -fx-text-fill: #721c24;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.toast-error .toast-message {
+    -fx-text-fill: #721c24;
+    -fx-font-size: 12px;
+}
+
+.toast-error .glyph-icon {
+    -fx-fill: #e74c3c;
+}
+
+/* Warning Toast */
+.toast-warning {
+    -fx-background-color: #fff3cd;
+    -fx-border-color: #ffeeba;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.toast-warning .toast-title {
+    -fx-text-fill: #856404;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.toast-warning .toast-message {
+    -fx-text-fill: #856404;
+    -fx-font-size: 12px;
+}
+
+.toast-warning .glyph-icon {
+    -fx-fill: #f39c12;
+}
+
+/* Info Toast */
+.toast-info {
+    -fx-background-color: #d1ecf1;
+    -fx-border-color: #bee5eb;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.toast-info .toast-title {
+    -fx-text-fill: #0c5460;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.toast-info .toast-message {
+    -fx-text-fill: #0c5460;
+    -fx-font-size: 12px;
+}
+
+.toast-info .glyph-icon {
+    -fx-fill: #17a2b8;
+}
+
+/* ============ APPLICATION MODALS ============ */
+
+/* Modal Overlay Background */
+.modal-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Main Modal Dialog Window */
+.modal-dialog {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 20, 0, 0, 5);
+    -fx-border-radius: 12;
+    -fx-max-width: 600;
+    -fx-min-width: 400;
+}
+
+/* Modal Header */
+.modal-header, .header-panel {
+    -fx-background-color: transparent;
+    -fx-padding: 20 25 15 25;
+    -fx-border-color: #E0E5F2;
+    -fx-border-width: 0 0 1 0;
+}
+
+.modal-header-success, 
+.modal-header-success-pane .header-panel {
+    -fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 20 25;
+}
+
+.modal-header-danger,
+.modal-header-danger-pane .header-panel {
+    -fx-background-color: linear-gradient(to right, #e74c3c, #c0392b);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 20 25;
+}
+
+.modal-header-warning,
+.modal-header-warning-pane .header-panel {
+    -fx-background-color: linear-gradient(to right, #f39c12, #f1c40f);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 20 25;
+}
+
+.modal-header-info,
+.modal-header-info-pane .header-panel {
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 20 25;
+}
+
+/* Ensure text in colored headers is white */
+.modal-header-success .label,
+.modal-header-success-pane .header-panel .label,
+.modal-header-danger .label,
+.modal-header-danger-pane .header-panel .label,
+.modal-header-warning .label,
+.modal-header-warning-pane .header-panel .label,
+.modal-header-info .label,
+.modal-header-info-pane .header-panel .label {
+    -fx-text-fill: white;
+}
+
+/* Modal Title */
+.modal-title {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.modal-title-white {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Modal Content Area */
+.modal-content {
+    -fx-padding: 25;
+    -fx-background-color: white;
+}
+
+.modal-message {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #7F8C8D;
+    -fx-wrap-text: true;
+    -fx-line-spacing: 4;
+}
+
+/* Modal Footer / Action Buttons */
+.modal-footer {
+    -fx-background-color: #F8F9FB;
+    -fx-background-radius: 0 0 12 12;
+    -fx-padding: 15 25;
+    -fx-border-color: #E0E5F2;
+    -fx-border-width: 1 0 0 0;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-spacing: 12;
+}
+
+/* Close/X Button in Header */
+.modal-close-icon {
+    -fx-fill: #95A5A6;
+    -fx-cursor: hand;
+}
+
+.modal-close-icon:hover {
+    -fx-fill: #e74c3c;
+}
+
+.modal-close-icon-white {
+    -fx-fill: rgba(255,255,255,0.7);
+    -fx-cursor: hand;
+}
+
+.modal-close-icon-white:hover {
+    -fx-fill: white;
+}
+
+/* ============ ALERT DIALOGS (Specific) ============ */
+
+/* Confirmation Dialog */
+.dialog-confirm-icon {
+    -fx-fill: #3498db;
+    -fx-font-size: 48px;
+}
+
+/* Success Dialog */
+.dialog-success-icon {
+    -fx-fill: #27ae60;
+    -fx-font-size: 48px;
+}
+
+/* Error Dialog */
+.dialog-error-icon {
+    -fx-fill: #e74c3c;
+    -fx-font-size: 48px;
+}
+
+/* Warning Dialog */
+.dialog-warning-icon {
+    -fx-fill: #f39c12;
+    -fx-font-size: 48px;
+}

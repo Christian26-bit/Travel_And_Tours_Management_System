@@ -101,6 +101,13 @@
     -fx-background-color: #f5eef8;
 }
 
+.table-view .table-row-cell:selected .table-cell,
+.table-view:focused .table-row-cell:selected .table-cell,
+.table-view .table-row-cell:selected .label,
+.table-view:focused .table-row-cell:selected .label {
+    -fx-text-fill: #2c3e50;
+}
+
 .table-view .table-cell {
     -fx-padding: 8 10;
     -fx-font-size: 13px;

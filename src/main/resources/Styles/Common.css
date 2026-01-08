@@ -275,8 +275,11 @@
     -fx-background-color: #EBF5FB;
 }
 
-.table-view .table-row-cell:selected .text {
-    -fx-fill: #2C3E50;
+.table-view .table-row-cell:selected .table-cell,
+.table-view:focused .table-row-cell:selected .table-cell,
+.table-view .table-row-cell:selected .label,
+.table-view:focused .table-row-cell:selected .label {
+    -fx-text-fill: #2C3E50;
 }
 
 .table-view .table-cell {

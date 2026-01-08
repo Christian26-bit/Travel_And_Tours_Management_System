@@ -98,6 +98,9 @@ public class LoginController implements Initializable {
         if (Model.getInstance().getUserLoggedInSuccessfully()) {
             // Store the authenticated user's email for later retrieval
             Model.getInstance().setAuthenticatedUserEmail(username);
+            
+            // Load the full authenticated user object
+            Model.getInstance().loadAuthenticatedUser();
 
             if (selectedAccountType == AccountType.USER) {
                 Model.getInstance().getUserViewFactory().showUserDashboardWindow();

@@ -1,0 +1,147 @@
+# Travel Management System - Class Diagram
+
+## Mermaid Diagram
+
+classDiagram
+    %% Core Application Entry
+    class App {
+        +start(Stage stage)
+        +main(String[] args)
+    }
+    class Launcher {
+        +main(String[] args)
+    }
+
+    %% Singleton Model Facade
+    class Model {
+        -static Model model
+        -ViewFactory viewFactory
+        -DatabaseDriver databaseDriver
+        -AdminViewFactory adminViewFactory
+        -UserViewFactory userViewFactory
+        -Employee authenticatedUser
+        +getInstance() Model
+        +getViewFactory() ViewFactory
+        +getAdminViewFactory() AdminViewFactory
+        +getUserViewFactory() UserViewFactory
+        +getClients() ObservableList~Client~
+        +getTourPackages() ObservableList~TourPackage~
+        +createBooking(BookingData) boolean
+    }
+
+    %% Data Access Layer (Repositories)
+    class ClientRepository {
+        <<interface>>
+        +getClients()
+        +createClient(...)
+    }
+    class ClientRepositoryImpl {
+        +getClients()
+        +createClient(...)
+    }
+    
+    class BookingRepository {
+        <<interface>>
+        +createBooking(...)
+        +getDashboardData(...)
+    }
+    class BookingRepositoryImpl {
+        +createBooking(...)
+        +getDashboardData(...)
+    }
+
+    class DatabaseDriver {
+        +getConnection() Connection
+    }
+
+    %% View Layer
+    class ViewFactory {
+        +showLoginWindow()
+        +closeStage(Stage stage)
+    }
+    class AdminViewFactory {
+        +showAdminWindow()
+        +getAdminSelectedMenuItem()
+    }
+    class UserViewFactory {
+        +showUserWindow()
+        +getUserSelectedMenuItem()
+    }
+
+    %% Controllers
+    class LoginController {
+        -Button login_btn
+        +login()
+    }
+    class AdminController {
+        +initialize()
+    }
+    class UserController {
+        +initialize()
+    }
+
+    %% Entities
+    class Person {
+        <<abstract>>
+        #StringProperty name
+        #StringProperty email
+        #StringProperty contactNumber
+        +getName() String
+        +getEmail() String
+        +getContactNumber() String
+    }
+
+    class Client {
+        -IntegerProperty clientId
+        -StringProperty address
+        -StringProperty customerType
+        -ObjectProperty~LocalDate~ dateRegistered
+    }
+
+    class Employee {
+        -IntegerProperty employeeId
+        -StringProperty password
+        -BooleanProperty isManager
+        -BooleanProperty isActive
+    }
+
+    class Booking
+    class TourPackage
+    class Trip
+    class Payment
+
+    %% Relationships
+    Person <|-- Client : inherits
+    Person <|-- Employee : inherits
+
+    Launcher ..> App : launches
+    App ..> Model : initializes
+    
+    Model *-- ViewFactory
+    Model *-- AdminViewFactory
+    Model *-- UserViewFactory
+    Model *-- DatabaseDriver
+    
+    Model ..> ClientRepository : uses
+    Model ..> BookingRepository : uses
+    
+    ClientRepositoryImpl ..|> ClientRepository
+    BookingRepositoryImpl ..|> BookingRepository
+    
+    LoginController --> Model : uses
+    AdminController --> Model : uses
+    UserController --> Model : uses
+    
+    ViewFactory ..> LoginController : loads
+    AdminViewFactory ..> AdminController : loads
+    UserViewFactory ..> UserController : loads
+
+    ClientRepositoryImpl --> DatabaseDriver : uses
+    BookingRepositoryImpl --> DatabaseDriver : uses
+
+## Key Components
+
+*   Model (Singleton): The heart of the application. It acts as a central Facade that provides access to data (via Repositories) and UI logic (via ViewFactories).
+*   View Factories: Separate concerns for general views (ViewFactory), Admin-specific views (AdminViewFactory), and User-specific views (UserViewFactory).
+*   Repositories: The data access layer is cleanly separated with Interfaces (e.g., ClientRepository) and Implementations (e.g., ClientRepositoryImpl), isolating the database logic from the rest of the app.
+*   Controllers: Classes like LoginController, AdminController, and UserController handle the interaction logic for specific FXML views, communicating with the Model to fetch or update data.
